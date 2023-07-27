@@ -1,0 +1,120 @@
+:root{
+    --bacground-color:#120c1c;
+    --background-hover-color:#211632;
+    --prime-color:#221735;
+    --dark-prime-color:#1b112c;
+    --dark-hover-prime-color:#2E1F49;
+    --secondary-color:#7f5fb9;
+    --bright-color:#bdaddb;
+    --text-color:#fcfbfd;
+    --black:#000000;
+}
+body {
+    margin: 0;
+    color: var(--text-color);
+    background: var(--bacground-color);
+}
+.head-list{
+    height: 8vmin;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 0;
+    display: table;
+    position: relative;
+}
+.head-list li{
+    height: 8vmin;
+    display: table-cell;
+    position: absolute;
+}
+#li-menu{
+    width: 8vmin;
+}
+#li-head{
+    margin-left: 8vmin;
+    width: 100%;
+}
+.head-menu{
+    height: 8vmin;
+    width: 100%;
+    background: var(--prime-color);
+    text-align: right;
+}
+#main-menu{
+    height: 8vmin;
+    width: 8vmin;
+    background-color: var(--dark-prime-color);
+    background-image: url(menu-svgrepo-com.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#main-menu:hover{
+    background-color: var(--dark-hover-prime-color);
+    background-image: url(menu-svgrepo-com.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#set-hint{
+    position: relative;
+    right: 14vmin;
+    top: 2vmin;
+    bottom: 2vmin;
+    height: 4vmin;
+    width: 10vmin;
+    background-color: var(--dark-prime-color);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.5vmin;
+    border: none;
+    border-radius: 0.7vmin;
+    letter-spacing: 0.2vmin;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#set-hint:hover{
+    background: var(--secondary-color);
+    color: var(--black);
+    box-shadow: 0 0 0.4vmin var(--secondary-color),
+                0 0 0.8vmin var(--secondary-color),
+                0 0 1.5vmin var(--secondary-color),
+                0 0 2vmin var(--secondary-color);
+}
+#save-file{
+    position: relative;
+    right: 12vmin;
+    top: 2vmin;
+    bottom: 2vmin;
+    height: 4vmin;
+    width: 10vmin;
+    background-color: var(--dark-prime-color);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.5vmin;
+    border: none;
+    border-radius: 0.7vmin;
+    letter-spacing: 0.2vmin;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#save-file:hover{
+    background: var(--secondary-color);
+    color: var(--black);
+    box-shadow: 0 0 0.4vmin var(--secondary-color),
+                0 0 0.8vmin var(--secondary-color),
+                0 0 1.5vmin var(--secondary-color),
+                0 0 2vmin var(--secondary-color);
+}
+.main-text{
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
