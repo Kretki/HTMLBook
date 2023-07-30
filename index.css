@@ -61,7 +61,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-#set-hint{
+#set-hint, #save-file, #set-reading{
     position: relative;
     right: 14vmin;
     top: 2vmin;
@@ -79,33 +79,14 @@ body {
     transition: 0.5s;
     cursor: pointer;
 }
-#set-hint:hover{
-    background: var(--secondary-color);
-    color: var(--black);
-    box-shadow: 0 0 0.4vmin var(--secondary-color),
-                0 0 0.8vmin var(--secondary-color),
-                0 0 1.5vmin var(--secondary-color),
-                0 0 2vmin var(--secondary-color);
-}
 #save-file{
-    position: relative;
     right: 12vmin;
-    top: 2vmin;
-    bottom: 2vmin;
-    height: 4vmin;
-    width: 10vmin;
-    background-color: var(--dark-prime-color);
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 1.5vmin;
-    border: none;
-    border-radius: 0.7vmin;
-    letter-spacing: 0.2vmin;
-    overflow: hidden;
-    transition: 0.5s;
-    cursor: pointer;
 }
-#save-file:hover{
+#set-reading{
+    width: 14vmin;
+    right: 16vmin;
+}
+#set-hint:hover, #save-file:hover, #set-reading:hover{
     background: var(--secondary-color);
     color: var(--black);
     box-shadow: 0 0 0.4vmin var(--secondary-color),
@@ -147,7 +128,7 @@ body {
     background-color: var(--prime-color);
     border-radius: 0 20px 0 0;
 }
-.main-text{
+#main-text{
     position: relative;
     height: 100px;
     padding-left: 50px;

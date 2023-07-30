@@ -29,6 +29,18 @@ function addTextHint(){
 function resizeOutliner(){
     var width = document.getElementById("text-header-outliner").getBoundingClientRect().width*0.9
     document.getElementById("header-liner").style.width = width+"px"
+    var left = 2*document.getElementById("left-corner").getBoundingClientRect().width+width
+    document.getElementById("right-corner").style.left = left+"px"
+}
+
+function changeReading(){
+    var text = document.getElementById("set-reading").textContent
+    if(text == "Start reading"){
+        document.getElementById("set-reading").textContent = "Stop reading"
+    }
+    else{
+        document.getElementById("set-reading").textContent = "Start reading"
+    }
 }
 
 resizeOutliner()
@@ -36,5 +48,6 @@ window.addEventListener('resize', function(event){
     resizeOutliner()
 }, true)
 
+document.getElementById("set-reading").onclick = changeReading
 document.getElementById("set-hint").onclick = addTextHint
 document.getElementById("save-file").onclick = savePage
