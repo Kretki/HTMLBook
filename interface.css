@@ -106,42 +106,54 @@ body {
     display: table-cell;
     position: absolute;
 }
-.text-header{
-    top: 20px;
-    height: 20px;
-}
-#left-corner{
+#left-corner-u{
     margin-left: -20px;
     width: 20px;
     height: 100px;
     background-color: var(--prime-color);
     border-radius: 20px 0 0 0;
 }
-#header-liner{
+#header-liner-u{
     width: 50px;
     height: 20px;
     background-color: var(--prime-color);
 }
-#right-corner{
+#right-corner-u{
     width: 20px;
     height: 100px;
     background-color: var(--prime-color);
     border-radius: 0 20px 0 0;
 }
-#canvas{
+#text-bottom-outliner{
     position: relative;
-    width: 100px;
-    top: 15px;
-    left: 50px;
-    height: 100px;
-    padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 5px;
-    background-color: var(--dark-prime-color);
+    display: table;
+    width: 100%;
 }
-#canvas div{
-    width: 84px;
-    height: 108px;
+#text-bottom-outliner li{
+    display: table-cell;
+    position: absolute;
+}
+#left-corner-b{
+    margin-left: -20px;
+    width: 20px;
+    height: 100px;
+    top: -70px;
     background-color: var(--prime-color);
+    border-radius: 0 0 0 20px;
+}
+#header-liner-b{
+    top: 10px;
+    width: 50px;
+    height: 20px;
+    background-color: var(--prime-color);
+}
+#right-corner-b{
+    top: -70px;
+    width: 20px;
+    height: 100px;
+    background-color: var(--prime-color);
+    border-radius: 0 0 20px 0;
+}
+#bottom{
+    height: 100px;
 }

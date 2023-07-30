@@ -2,7 +2,10 @@
 <html>
     <head>
         <title>Book</title>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="interface.css">
+        <link rel="stylesheet" href="book.css">
+        <script type="text/javascript" src="main.js" defer></script>
+        <script type="text/javascript" src="page_flip.js" defer></script>
     </head>
     <body>
         <ul class="head-list">
@@ -15,16 +18,35 @@
         </ul>
         <div class="main-block">
             <ul id="text-header-outliner">
-                <li id="left-corner"></li>
-                <li id="header-liner"></li>
-                <li id="right-corner"></li>
+                <li id="left-corner-u"></li>
+                <li id="header-liner-u"></li>
+                <li id="right-corner-u"></li>
             </ul>
             <div id="canvas">
-                <div id="page-1"></div>
-                <div id="page-2"></div>
+                <div class="back">
+                    <div id="b1" class="back-content">
+                        <h1>Back 1</h1>
+                    </div>
+                </div>
+                <div id="p2" class="paper">
+                    <div class="front">
+                        <div id="f2" class="front-content">
+                            <h1>Front 2</h1>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div id="b2" class="back-content">
+                            <h1>Back 2</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <ul id="text-bottom-outliner">
+                <li id="left-corner-b"></li>
+                <li id="header-liner-b"></li>
+                <li id="right-corner-b"></li>
+            </ul>
         </div>
-        <script type="text/javascript" src="main.js"></script>
-        <script type="text/javascript" src="page_flip.js"></script>
+        <div id="bottom"></div>
     </body>
 </html>

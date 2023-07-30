@@ -28,12 +28,14 @@ function addTextHint(){
 
 function resizeOutliner(){
     var width = document.getElementById("text-header-outliner").getBoundingClientRect().width*0.9
-    document.getElementById("header-liner").style.width = width+"px"
+    document.getElementById("header-liner-u").style.width = width+"px"
+    document.getElementById("header-liner-b").style.width = width+"px"
     document.getElementById("canvas").style.width = (width-document.getElementById("canvas").getBoundingClientRect().left)+"px"
     var height = document.getElementById("canvas").getBoundingClientRect().width/168*108
     document.getElementById("canvas").style.height = height+"px"
-    var left = 2*document.getElementById("left-corner").getBoundingClientRect().width+width
-    document.getElementById("right-corner").style.left = left+"px"
+    var left = 2*document.getElementById("left-corner-u").getBoundingClientRect().width+width
+    document.getElementById("right-corner-u").style.left = left+"px"
+    document.getElementById("right-corner-b").style.left = left+"px"
 }
 
 function changeReading(){

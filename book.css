@@ -1,0 +1,19 @@
+#canvas{
+    position: relative;
+    width: 100px;
+    top: 15px;
+    left: 50px;
+    height: 100px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    background-color: var(--dark-prime-color);
+    display: table;
+}
+#canvas div{
+    width: 84px;
+    height: 108px;
+    background-color: var(--prime-color);
+    display: table-cell;
+}
