@@ -26,5 +26,15 @@ function addTextHint(){
     range.insertNode(span)
 }
 
+function resizeOutliner(){
+    var width = document.getElementById("text-header-outliner").getBoundingClientRect().width*0.9
+    document.getElementById("header-liner").style.width = width+"px"
+}
+
+resizeOutliner()
+window.addEventListener('resize', function(event){
+    resizeOutliner()
+}, true)
+
 document.getElementById("set-hint").onclick = addTextHint
 document.getElementById("save-file").onclick = savePage

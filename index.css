@@ -113,8 +113,43 @@ body {
                 0 0 1.5vmin var(--secondary-color),
                 0 0 2vmin var(--secondary-color);
 }
-.main-text{
+.main-blick{
+    position: absolute;
+}
+#text-header-outliner{
+    position: relative;
+    display: table;
+    width: 100%;
+}
+#text-header-outliner li{
+    display: table-cell;
+    position: absolute;
+}
+.text-header{
+    top: 20px;
+    height: 20px;
+}
+#left-corner{
+    margin-left: -20px;
+    width: 20px;
     height: 100px;
-    text-align: center;
-    line-height: 100px;
+    background-color: var(--prime-color);
+    border-radius: 20px 0 0 0;
+}
+#header-liner{
+    width: 50px;
+    height: 20px;
+    background-color: var(--prime-color);
+}
+#right-corner{
+    width: 20px;
+    height: 100px;
+    background-color: var(--prime-color);
+    border-radius: 0 20px 0 0;
+}
+.main-text{
+    position: relative;
+    height: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
