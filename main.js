@@ -42,6 +42,17 @@ function resizeOutliner(){
     document.getElementById("right-corner-b").style.left = left+"px"
 }
 
+function resizeSaved(){
+    document.getElementById("header-liner-u").style.width = hluW
+    document.getElementById("header-liner-b").style.width = hlbW
+    document.getElementById("header-bubbles").style.left = hbL
+    document.getElementById("canvas").style.width = canvW
+    document.getElementById("canvas").style.height = canvH
+    document.getElementById("canvas").style.left = canvL
+    document.getElementById("right-corner-u").style.left = rcuL
+    document.getElementById("right-corner-b").style.left = rcbL
+}
+
 function changeReading(){
     var text = document.getElementById("set-reading").textContent
     if(text == "Start reading"){
@@ -53,8 +64,19 @@ function changeReading(){
 }
 
 resizeOutliner()
+
+let hluW = document.getElementById("header-liner-u").style.width
+let hlbW = document.getElementById("header-liner-b").style.width
+let hbL = document.getElementById("header-bubbles").style.left
+let canvW = document.getElementById("canvas").style.width
+let canvH = document.getElementById("canvas").style.height
+let canvL = document.getElementById("canvas").style.left
+let rcuL = document.getElementById("right-corner-u").style.left
+let rcbL = document.getElementById("right-corner-b").style.left
+
+
 window.addEventListener('resize', function(event){
-    resizeOutliner()
+    resizeSaved()
 }, true)
 
 document.getElementById("set-reading").onclick = changeReading
