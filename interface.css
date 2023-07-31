@@ -98,7 +98,7 @@ body {
                 0 0 1.5vmin var(--secondary-color),
                 0 0 2vmin var(--secondary-color);
 }
-.main-block{
+#main-block{
     position: absolute;
 }
 #text-header-outliner{
