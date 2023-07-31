@@ -27,15 +27,15 @@ function addTextHint(){
 }
 
 function resizeOutliner(){
-    var width = window.screen.width-2*(document.getElementById("left-corner-u").getBoundingClientRect().width+document.getElementById("left-corner-u").getBoundingClientRect().left)
+    var height = window.screen.height*0.6
+    var width = height/108*164
     document.getElementById("header-liner-u").style.width = width+"px"
     document.getElementById("header-liner-b").style.width = width+"px"
     var bookWidth = width-document.getElementById("canvas").getBoundingClientRect().left
     document.getElementById("canvas").style.width = bookWidth/2.1+"px"
     var left = document.getElementById("canvas").getBoundingClientRect().left
-    var height = document.getElementById("canvas").getBoundingClientRect().width/84*108
-    document.getElementById("canvas").style.height = height-300+"px"
-    // document.getElementById("canvas").style.left = bookWidth/2+left+"px"
+    document.getElementById("canvas").style.height = height+"px"
+    document.getElementById("canvas").style.left = bookWidth/2+left+document.getElementById("right-corner-u").getBoundingClientRect().width/1.5+"px"
     left = 2*document.getElementById("left-corner-u").getBoundingClientRect().width+width
     document.getElementById("right-corner-u").style.left = left+"px"
     document.getElementById("right-corner-b").style.left = left+"px"
