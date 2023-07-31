@@ -100,6 +100,7 @@ body {
 }
 #main-block{
     position: absolute;
+    transition: transform 0.5s;
 }
 #text-header-outliner{
     position: relative;
@@ -117,23 +118,27 @@ body {
     height: 100px;
     background-color: var(--prime-color);
     border-radius: 20px 0 0 0;
+    transition: transform 0.5s;
 }
 #header-liner-u{
     width: 50px;
     height: 20px;
     background-color: var(--prime-color);
+    transition: transform 0.5s;
 }
 #right-corner-u{
     width: 20px;
     height: 100px;
     background-color: var(--prime-color);
     border-radius: 0 20px 0 0;
+    transition: transform 0.5s;
 }
 #header-bubbles{
     top: -10px;
     position: absolute;
     z-index: 5;
     display: table;
+    transition: transform 0.5s;
 }
 #header-bubbles li{
     display: table-cell;
@@ -192,12 +197,14 @@ body {
     top: -70px;
     background-color: var(--prime-color);
     border-radius: 0 0 0 20px;
+    transition: transform 0.5s;
 }
 #header-liner-b{
     top: 10px;
     width: 50px;
     height: 20px;
     background-color: var(--prime-color);
+    transition: transform 0.5s;
 }
 #right-corner-b{
     top: -70px;
@@ -205,6 +212,7 @@ body {
     height: 100px;
     background-color: var(--prime-color);
     border-radius: 0 0 20px 0;
+    transition: transform 0.5s;
 }
 #bottom{
     height: 100px;
