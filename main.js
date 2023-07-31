@@ -31,8 +31,9 @@ function resizeOutliner(){
     var width = height/108*164
     document.getElementById("header-liner-u").style.width = width+"px"
     document.getElementById("header-liner-b").style.width = width+"px"
+    document.getElementById("header-bubbles").style.left = width/2+document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
     var bookWidth = width-document.getElementById("canvas").getBoundingClientRect().left
-    document.getElementById("canvas").style.width = bookWidth/2.1+"px"
+    document.getElementById("canvas").style.width = bookWidth/2.1+"px" //podgon
     var left = document.getElementById("canvas").getBoundingClientRect().left
     document.getElementById("canvas").style.height = height+"px"
     document.getElementById("canvas").style.left = bookWidth/2+left+document.getElementById("right-corner-u").getBoundingClientRect().width/1.5+"px"

@@ -55,8 +55,11 @@
 }
 
 #p1{
-    z-index: 3;
+    z-index: 4;
 }
 #p2{
+    z-index: 3;
+}
+#p3{
     z-index: 2;
 }
