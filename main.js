@@ -27,11 +27,11 @@ function addTextHint(){
 }
 
 function resizeOutliner(){
-    var width = document.getElementById("text-header-outliner").getBoundingClientRect().width*0.9
+    var width = window.screen.width-2*(document.getElementById("left-corner-u").getBoundingClientRect().width+document.getElementById("left-corner-u").getBoundingClientRect().left)
     document.getElementById("header-liner-u").style.width = width+"px"
     document.getElementById("header-liner-b").style.width = width+"px"
     var bookWidth = width-document.getElementById("canvas").getBoundingClientRect().left
-    document.getElementById("canvas").style.width = bookWidth/2+"px"
+    document.getElementById("canvas").style.width = bookWidth/2.1+"px"
     var left = document.getElementById("canvas").getBoundingClientRect().left
     console.log(bookWidth, left)
     var height = document.getElementById("canvas").getBoundingClientRect().width/84*108

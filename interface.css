@@ -9,6 +9,10 @@
     --text-color:#fcfbfd;
     --black:#000000;
 }
+html, body{
+    max-width: 100%;
+    /* overflow-x: hidden; */
+}
 body {
     margin: 0;
     color: var(--text-color);
@@ -32,7 +36,7 @@ body {
 }
 #li-head{
     margin-left: 8vmin;
-    width: 100%;
+    width: calc(100% - 8vmin);
 }
 .head-menu{
     height: 8vmin;
@@ -94,13 +98,14 @@ body {
                 0 0 1.5vmin var(--secondary-color),
                 0 0 2vmin var(--secondary-color);
 }
-.main-blick{
+.main-block{
     position: absolute;
 }
 #text-header-outliner{
     position: relative;
     display: table;
     width: 100%;
+    top: 20px;
 }
 #text-header-outliner li{
     display: table-cell;
@@ -124,10 +129,21 @@ body {
     background-color: var(--prime-color);
     border-radius: 0 20px 0 0;
 }
+.header-bubbles{
+    position: absolute;
+    left: 50%;
+}
+.center-bubble{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: var(--prime-color);
+}
 #text-bottom-outliner{
     position: relative;
     display: table;
     width: 100%;
+    top: 20px;
 }
 #text-bottom-outliner li{
     display: table-cell;
