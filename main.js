@@ -31,7 +31,7 @@ function resizeOutliner(){
     var width = height/108*164
     document.getElementById("header-liner-u").style.width = width+"px"
     document.getElementById("header-liner-b").style.width = width+"px"
-    document.getElementById("header-bubbles").style.left = width/2+document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
+    document.getElementById("header-bubbles").style.left = width/2-2*document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
     var bookWidth = width-document.getElementById("canvas").getBoundingClientRect().left
     document.getElementById("canvas").style.width = bookWidth/2.1+"px" //podgon
     var left = document.getElementById("canvas").getBoundingClientRect().left
@@ -57,6 +57,6 @@ window.addEventListener('resize', function(event){
     resizeOutliner()
 }, true)
 
-// document.getElementById("set-reading").onclick = changeReading
+document.getElementById("set-reading").onclick = changeReading
 document.getElementById("set-hint").onclick = addTextHint
 document.getElementById("save-file").onclick = savePage
