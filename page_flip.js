@@ -30,7 +30,7 @@ function goNextPage(){
                 paper3.classList.add("flipped")
                 paper3.style.zIndex = 3
                 closeBook()
-                document.getElementById("canvas").style.transform = "translateX("+document.getElementById("header-liner-u").getBoundingClientRect().width/2+"px)"
+                document.getElementById("canvas").style.transform = "translateX("+(document.getElementById("header-liner-u").getBoundingClientRect().width/2-5)+"px)"
                 break
         }
         currentLocation++
