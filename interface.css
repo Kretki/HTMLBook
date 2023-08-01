@@ -102,18 +102,20 @@ body {
     position: absolute;
     transition: transform 0.5s;
 }
+#main-block ul {
+    margin: 0;
+    padding: 0;
+}
 #text-header-outliner{
     position: relative;
-    display: table;
+    display: inline;
     width: 100%;
-    top: 20px;
 }
 #text-header-outliner li{
-    display: table-cell;
-    position: absolute;
+    display: inline-block;
+    position: relative;
 }
 #left-corner-u{
-    margin-left: -20px;
     width: 20px;
     height: 100px;
     background-color: var(--prime-color);
@@ -134,11 +136,11 @@ body {
     transition: transform 0.5s;
 }
 #header-bubbles{
-    top: -10px;
     position: absolute;
     z-index: 5;
     display: table;
     transition: transform 0.5s;
+    border: 3px solid red;
 }
 #header-bubbles li{
     display: table-cell;
@@ -182,32 +184,27 @@ body {
 }
 #text-bottom-outliner{
     position: relative;
-    display: table;
+    display: inline;
     width: 100%;
     top: 20px;
 }
 #text-bottom-outliner li{
-    display: table-cell;
-    position: absolute;
+    display: inline-block;
+    position: relative;
 }
 #left-corner-b{
-    margin-left: -20px;
     width: 20px;
     height: 100px;
-    top: -70px;
     background-color: var(--prime-color);
     border-radius: 0 0 0 20px;
     transition: transform 0.5s;
 }
 #header-liner-b{
-    top: 10px;
-    width: 50px;
     height: 20px;
     background-color: var(--prime-color);
     transition: transform 0.5s;
 }
 #right-corner-b{
-    top: -70px;
     width: 20px;
     height: 100px;
     background-color: var(--prime-color);

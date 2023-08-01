@@ -26,21 +26,26 @@ function addTextHint(){
     range.insertNode(span)
 }
 
+function retValParam(name){
+    return document.getElementById(name).getBoundingClientRect()
+}
+
 function resizeOutlinerStart(){
     var height = window.screen.height*0.6
     var width = height/108*82
     document.getElementById("header-liner-u").style.width = width+"px"
     document.getElementById("header-liner-b").style.width = width+"px"
+    document.getElementById("header-liner-u").style.top = (-document.getElementById("left-corner-u").getBoundingClientRect().height+document.getElementById("left-corner-u").getBoundingClientRect().width)+"px"
     document.getElementById("header-bubbles").style.left = width/2-2*document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
-    var bookWidth = width-document.getElementById("canvas").getBoundingClientRect().left
-    document.getElementById("canvas").style.width = bookWidth+"px" //podgon
+    document.getElementById("header-bubbles").style.top = 0+"px"
+    document.getElementById("canvas").style.width = width-2*document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
     document.getElementById("canvas").style.height = height+"px"
-    document.getElementById("canvas").style.left = document.getElementById("canvas").style.left+"px"
-    left = 2*document.getElementById("left-corner-u").getBoundingClientRect().width+width
-    document.getElementById("right-corner-u").style.left = left+"px"
-    document.getElementById("right-corner-b").style.left = left+"px"
-    document.getElementById("main-block").style.left = 50+"%"
-    document.getElementById("main-block").style.left = document.getElementById("main-block").getBoundingClientRect().left-document.getElementById("main-block").getBoundingClientRect().width/1.5 + "px"
+    document.getElementById("canvas").style.left = document.getElementById("left-corner-u").getBoundingClientRect().width+"px"
+    document.getElementById("canvas").style.top = (-document.getElementById("left-corner-u").getBoundingClientRect().height+document.getElementById("header-liner-u").getBoundingClientRect().height)+"px"
+    document.getElementById("text-bottom-outliner").style.top = (-document.getElementById("left-corner-u").getBoundingClientRect().height+document.getElementById("header-liner-u").getBoundingClientRect().height)+(-retValParam("left-corner-b").height+retValParam("header-liner-b").height)+"px"    
+    // document.getElementById("header-liner-b").style.width = (-document.getElementById("left-corner-u").getBoundingClientRect().height+document.getElementById("header-liner-u").getBoundingClientRect().height)+"px"
+    // document.getElementById("main-block").style.left = 50+"%"
+    // document.getElementById("main-block").style.left = document.getElementById("main-block").getBoundingClientRect().left-document.getElementById("main-block").getBoundingClientRect().width/1.5 + "px"
 }
 
 function resizeSaved(){
