@@ -94,9 +94,15 @@ body {
                 0 0 1.5vmin var(--secondary-color),
                 0 0 2vmin var(--secondary-color);
 }
-#main-block{
+#main-container{
     position: absolute;
     transition: transform 0.5s;
+    display: inline;
+}
+#main-block{
+    position: relative;
+    transition: transform 0.5s;
+    display: inline-block;
 }
 #main-block ul {
     margin: 0;
@@ -222,7 +228,6 @@ body {
 }
 #block-quotes{
     position: absolute;
-    margin-top: 80px;
     display: inline;
     transition: transform 0.5s;
 }
