@@ -46,6 +46,8 @@ function resizeOutlinerStart(){
     document.getElementById("main-block").style.left = 50+"%"
     document.getElementById("main-block").style.left = retValParam("main-block").left-retValParam("main-block").width/2 + "px"
     document.getElementById("main-block").style.top = retValParam("main-menu").height+50+"px"
+    document.getElementById("block-quotes").style.left = retValParam("main-block").left+retValParam("main-block").width+5+"px"
+    document.getElementById("block-quotes").style.width = retValParam("canvas").width+"px"
 }
 
 function resizeSaved(){
@@ -89,6 +91,21 @@ function closeBook(){
     document.getElementById("header-liner-b").style.transform = "scaleX(1) translateX(0px)"
 }
 
+function openQuotes(){
+    if(document.getElementById("dropdown-quotes").getBoundingClientRect().width < 50){
+        var li = document.getElementById("dropdown-quotes").getElementsByTagName("li")
+        for(var i = 0; i<li.length; i++){
+            li[i].style.width = "200px"
+        }
+    }
+    else{
+        var li = document.getElementById("dropdown-quotes").getElementsByTagName("li")
+        for(var i = 0; i<li.length; i++){
+            li[i].style.width = "0px"
+        }
+    }
+}
+
 resizeOutlinerStart()
 
 let hluW = retValParam("header-liner-u").width
@@ -108,3 +125,4 @@ window.addEventListener('resize', function(event){
 document.getElementById("set-reading").onclick = changeReading
 document.getElementById("set-hint").onclick = addTextHint
 document.getElementById("save-file").onclick = savePage
+document.getElementById("open-qoutes").onclick = openQuotes
