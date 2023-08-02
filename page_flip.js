@@ -29,8 +29,7 @@ function goNextPage(){
             case 3:
                 paper3.classList.add("flipped")
                 paper3.style.zIndex = 3
-                closeBook()
-                document.getElementById("canvas").style.transform = "translateX("+(document.getElementById("header-liner-u").getBoundingClientRect().width/2-5)+"px)"
+                closeFromLastPage()
                 break
         }
         currentLocation++
@@ -43,8 +42,7 @@ function goPrevPage(){
             case 2:
                 paper1.classList.remove("flipped")
                 paper1.style.zIndex = 4
-                closeBook()
-                document.getElementById("canvas").style.transform = "translateX(0px)"
+                closeToFirstPage()
                 break
             case 3:
                 paper2.classList.remove("flipped")

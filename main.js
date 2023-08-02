@@ -70,31 +70,34 @@ function changeReading(){
     }
 }
 
-function resizeOutlinerUp(){
+function openBook(){
     document.getElementById("header-liner-u").style.transform = "scaleX(2)"
     document.getElementById("header-liner-b").style.transform = "scaleX(2)"
     document.getElementById("right-corner-u").style.transform = "translateX("+retValParam("header-liner-u").width/2+"px)"
     document.getElementById("left-corner-u").style.transform = "translateX("+(-retValParam("header-liner-u").width/2)+"px)"
-    document.getElementById("canvas").style.transform = "translateX("+retValParam("header-liner-u").width/2+"px)"
+    document.getElementById("canvas").style.left = retValParam("header-liner-u").width/2+retValParam("left-corner-u").width+"px"
     document.getElementById("right-corner-b").style.transform = "translateX("+retValParam("header-liner-b").width/2+"px)"
-    document.getElementById("left-corner-b").style.transform = "translateX("+(-retValParam("header-liner-b").width/2)+"px)"
+    document.getElementById("left-corner-b").style.left = -retValParam("header-liner-b").width/2+"px"
 }
 
-function resizeOutlinerDown(){
+function closeToFirstPage(){
     document.getElementById("right-corner-u").style.transform = "translateX(0px)"
     document.getElementById("left-corner-u").style.transform = "translateX(0px)"
     document.getElementById("right-corner-b").style.transform = "translateX(0px)"
-    document.getElementById("left-corner-b").style.transform = "translateX(0px)"
+    document.getElementById("left-corner-b").style.left = "0px"
     document.getElementById("header-liner-u").style.transform = "scaleX(1)"
     document.getElementById("header-liner-b").style.transform = "scaleX(1)"
+    document.getElementById("canvas").style.left = canvL
 }
 
-function openBook(){
-    resizeOutlinerUp()
-}
-
-function closeBook(){
-    resizeOutlinerDown()
+function closeFromLastPage(){
+    document.getElementById("right-corner-u").style.transform = "translateX(0px)"
+    document.getElementById("left-corner-u").style.transform = "translateX(0px)"
+    document.getElementById("right-corner-b").style.transform = "translateX(0px)"
+    document.getElementById("left-corner-b").style.left = "0px"
+    document.getElementById("header-liner-u").style.transform = "scaleX(1)"
+    document.getElementById("header-liner-b").style.transform = "scaleX(1)"
+    document.getElementById("canvas").style.left = retValParam("header-liner-u").width/2+3*retValParam("left-corner-u").width/4+"px"
 }
 
 resizeOutlinerStart()
