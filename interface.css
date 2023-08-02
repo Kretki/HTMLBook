@@ -39,12 +39,13 @@ body {
     width: 100%;
     background: var(--prime-color);
     text-align: right;
+    user-select: none;
 }
 #main-menu{
     height: 8vmin;
     width: 8vmin;
     background-color: var(--dark-prime-color);
-    background-image: url(menu-svgrepo-com.svg);
+    background-image: url(menu.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -56,7 +57,7 @@ body {
 }
 #main-menu:hover{
     background-color: var(--dark-hover-prime-color);
-    background-image: url(menu-svgrepo-com.svg);
+    background-image: url(menu.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -78,6 +79,7 @@ body {
     overflow: hidden;
     transition: 0.5s;
     cursor: pointer;
+    user-select: none;
 }
 #save-file{
     right: 12vmin;
@@ -157,6 +159,7 @@ body {
     background-color: var(--secondary-color);
     border-radius: 10px;
     z-index: 6;
+    cursor: pointer;
 }
 #right-arrow{
     position: relative;
@@ -167,6 +170,7 @@ body {
     background-color: var(--secondary-color);
     border-radius: 10px;
     z-index: 6;
+    cursor: pointer;
 }
 #center-bubble{
     position: relative;
@@ -193,7 +197,6 @@ body {
     height: 40px;
     background-color: var(--secondary-color);
     border-radius: 20px;
-    backdrop-filter: blur(4px);
     z-index: 1;
 }
 #text-bottom-outliner{
@@ -232,15 +235,32 @@ body {
     transition: transform 0.5s;
     margin-top: 15px;
     margin-left: 5px;
+    user-select: none;
 }
 #open-qoutes{
     position: relative;
     width: 15px;
     height: 50px;
-    background-color: var(--dark-prime-color);
     border: 2px solid var(--dark-hover-prime-color);
     display: inline-block;
     top: 9px;
+    background-color: var(--dark-prime-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#quote-arrow{
+    width: 15px;
+    height: 50px;
+    background-image: url(triangle-right.svg);
+    background-position: center;
+    transition: 0.5s;
+    background-size: 25px 50px;
+}
+#open-qoutes:hover{
+    background-color: var(--dark-hover-prime-color);
 }
 #dropdown-quotes{
     display: inline-block;
@@ -258,6 +278,7 @@ body {
     align-items: center;
     background-color: var(--prime-color);
     margin-bottom: 2px;
+    user-select: none;
 }
 #bottom{
     height: 100px;

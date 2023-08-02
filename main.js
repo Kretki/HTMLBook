@@ -99,6 +99,8 @@ function openQuotes(){
             li[i].style.width = retValParam("canvas").width+"px"
         }
         document.getElementById("main-container").style.transform = "translateX(-40%)"
+        document.getElementById("open-qoutes").style.backgroundColor = "#2E1F49"
+        document.getElementById("quote-arrow").style.transform = "rotate(180deg)"
     }
     else{
         var li = document.getElementById("dropdown-quotes").getElementsByTagName("li")
@@ -106,6 +108,8 @@ function openQuotes(){
             li[i].style.width = "0px"
         }
         document.getElementById("main-container").style.transform = "translateX(0%)"
+        document.getElementById("open-qoutes").style.backgroundColor = "#1b112c"
+        document.getElementById("quote-arrow").style.transform = "rotate(0deg)"
     }
 }
 
