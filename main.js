@@ -43,10 +43,9 @@ function resizeOutlinerStart(){
     document.getElementById("canvas").style.left = retValParam("left-corner-u").width+"px"
     document.getElementById("canvas").style.top = (-retValParam("left-corner-u").height+retValParam("header-liner-u").height)+"px"
     document.getElementById("text-bottom-outliner").style.top = (-retValParam("left-corner-u").height+retValParam("header-liner-u").height)+(-retValParam("left-corner-b").height+retValParam("header-liner-b").height+5)+"px"    
-    document.getElementById("main-block").style.left = 50+"%"
-    document.getElementById("main-block").style.left = retValParam("main-block").left-retValParam("main-block").width/2 + "px"
-    // document.getElementById("main-block").style.top = retValParam("main-menu").height+50+"px"
-    document.getElementById("block-quotes").style.left = retValParam("main-block").left+retValParam("main-block").width+5+"px"
+    document.getElementById("main-container").style.left = 50+"%"
+    document.getElementById("main-container").style.left = retValParam("main-block").left-retValParam("main-block").width/2 + "px"
+    document.getElementById("main-container").style.top = retValParam("main-menu").height+50+"px"
     document.getElementById("block-quotes").style.width = retValParam("canvas").width+60+"px"
 }
 
@@ -99,16 +98,14 @@ function openQuotes(){
         for(var i = 0; i<li.length; i++){
             li[i].style.width = retValParam("canvas").width+"px"
         }
-        // document.getElementById("main-block").style.transform = "translateX(-70%)"
-        // document.getElementById("block-quotes").style.transform = "translateX(-70%)"
+        document.getElementById("main-container").style.transform = "translateX(-40%)"
     }
     else{
         var li = document.getElementById("dropdown-quotes").getElementsByTagName("li")
         for(var i = 0; i<li.length; i++){
             li[i].style.width = "0px"
         }
-        // document.getElementById("main-block").style.transform = "translateX(0%)"
-        // document.getElementById("block-quotes").style.transform = "translateX(0%)"
+        document.getElementById("main-container").style.transform = "translateX(0%)"
     }
 }
 

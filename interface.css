@@ -230,6 +230,8 @@ body {
     position: absolute;
     display: inline;
     transition: transform 0.5s;
+    margin-top: 15px;
+    margin-left: 5px;
 }
 #open-qoutes{
     position: relative;
