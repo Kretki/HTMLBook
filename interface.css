@@ -107,6 +107,7 @@ body {
     display: inline;
     width: 100%;
     z-index: -1;
+    transition: transform 0.5s;
 }
 #text-header-outliner li{
     display: inline-block;
@@ -194,6 +195,7 @@ body {
     display: inline;
     width: 100%;
     z-index: -1;
+    transition: transform 0.5s;
 }
 #text-bottom-outliner li{
     display: inline-block;
