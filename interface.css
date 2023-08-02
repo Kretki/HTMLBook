@@ -2,6 +2,7 @@
     --bacground-color:#120c1c;
     --background-hover-color:#211632;
     --prime-color:#221735;
+    --prime-hover-color:#352550;
     --dark-prime-color:#1b112c;
     --dark-hover-prime-color:#2E1F49;
     --secondary-color:#7f5fb9;
@@ -279,6 +280,10 @@ body {
     background-color: var(--prime-color);
     margin-bottom: 2px;
     user-select: none;
+}
+#dropdown-quotes li:hover{
+    background-color: var(--prime-hover-color);
+    transition: 0.2s;
 }
 #bottom{
     height: 100px;
