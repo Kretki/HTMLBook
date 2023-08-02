@@ -47,7 +47,7 @@ function resizeOutlinerStart(){
     document.getElementById("main-block").style.left = retValParam("main-block").left-retValParam("main-block").width/2 + "px"
     document.getElementById("main-block").style.top = retValParam("main-menu").height+50+"px"
     document.getElementById("block-quotes").style.left = retValParam("main-block").left+retValParam("main-block").width+5+"px"
-    document.getElementById("block-quotes").style.width = retValParam("canvas").width+"px"
+    // docuent.getElementById("block-quotes").style.width = retValParam("canvas").width+"px"
 }
 
 function resizeSaved(){
@@ -80,6 +80,7 @@ function openBook(){
     document.getElementById("canvas").style.transform = "translateX("+(retValParam("header-liner-u").width/2-17)+"px)"
     document.getElementById("right-corner-b").style.transform = "translateX("+(retValParam("header-liner-b").width/2-16)+"px)"
     document.getElementById("left-corner-b").style.transform = "translateX("+(-retValParam("header-liner-b").width/2-16)+"px)"
+    document.getElementById("block-quotes").style.transform = "translateX("+(retValParam("header-liner-u").width/2-retValParam("right-corner-b").width+5)+"px)"
 }
 
 function closeBook(){
@@ -89,13 +90,14 @@ function closeBook(){
     document.getElementById("left-corner-b").style.transform = "translateX(0px)"
     document.getElementById("header-liner-u").style.transform = "scaleX(1) translateX(0px)"
     document.getElementById("header-liner-b").style.transform = "scaleX(1) translateX(0px)"
+    document.getElementById("block-quotes").style.transform = "translateX(0px)"
 }
 
 function openQuotes(){
     if(document.getElementById("dropdown-quotes").getBoundingClientRect().width < 50){
         var li = document.getElementById("dropdown-quotes").getElementsByTagName("li")
         for(var i = 0; i<li.length; i++){
-            li[i].style.width = "200px"
+            li[i].style.width = retValParam("canvas").width+"px"
         }
     }
     else{

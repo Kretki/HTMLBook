@@ -224,6 +224,7 @@ body {
     position: absolute;
     margin-top: 80px;
     display: inline;
+    transition: transform 0.5s;
 }
 #open-qoutes{
     position: relative;
