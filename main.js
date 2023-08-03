@@ -96,7 +96,7 @@ function openNotes(){
     if(document.getElementById("dropdown-notes").getBoundingClientRect().width < 50){
         var li = document.getElementById("dropdown-notes").getElementsByTagName("li")
         for(var i = 0; i<li.length; i++){
-            li[i].style.width = retValParam("canvas").width+"px"
+            li[i].style.width = retValParam("canvas").width+30+"px"
         }
         document.getElementById("main-container").style.transform = "translateX(-40%)"
         document.getElementById("open-notes").style.backgroundColor = "#2E1F49"

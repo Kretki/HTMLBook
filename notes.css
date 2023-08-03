@@ -1,0 +1,112 @@
+#block-notes{
+    position: absolute;
+    display: inline;
+    transition: transform 0.5s;
+    margin-left: 5px;
+    user-select: none;
+    vertical-align: top;
+}
+#open-notes{
+    position: relative;
+    width: 15px;
+    height: 50px;
+    border: 2px solid var(--dark-hover-prime-color);
+    display: inline-block;
+    background-color: var(--dark-prime-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#notes-arrow{
+    width: 15px;
+    height: 50px;
+    background-image: url(triangle-right.svg);
+    background-position: center;
+    transition: 0.5s;
+    background-size: 25px 50px;
+}
+#open-notes:hover{
+    background-color: var(--dark-hover-prime-color);
+}
+#dropdown-outer{
+    display: inline-block;
+    margin-left: -40px;
+    margin-top: 0;
+    vertical-align: top;
+}
+#dropdown-notes{
+    margin-top: 0;
+    vertical-align: top;
+}
+#dropdown-notes li{
+    position: relative;
+    display: grid;
+    width: 0px;
+    margin-right: 0;
+    white-space: nowrap;
+    background-color: var(--prime-color);
+    transition: all 0.7s ease-in-out;
+    user-select: none;
+    overflow:hidden;
+}
+#quotes-text-container, #block-scheme-editor{
+    position: relative;
+    margin-bottom: 4px;
+    height: 200px;
+}
+#quotes-text-container.collapsed, #block-scheme-editor.collapsed {
+    height: 0;
+}
+#quotes-text-name, #block-scheme-name{
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+}
+#quotes-text-name:hover, #block-scheme-name:hover{
+    background-color: var(--prime-hover-color);
+    cursor: pointer;
+}
+#quotes-section{
+    position: relative;
+    padding: 0;
+    top: 10px;
+}
+#choose-quotes{
+    position: relative;
+    padding: 0;
+    height: 25px;
+    margin-left: 10px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    text-align: center;
+}
+#dropdown-quotes-name{
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 3px;
+}
+#arrow-down-quotes{
+    position: relative;
+    display: inline-block;
+    background-image: url(arrow-down.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    background-size: 30px 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#quotes-text-editor{
+    position: relative;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    background-color: var(--bacground-color);
+    border-radius: 5px;
+}

@@ -4,6 +4,7 @@
         <title>Book</title>
         <link rel="stylesheet" href="interface.css">
         <link rel="stylesheet" href="book.css">
+        <link rel="stylesheet" href="notes.css">
         <script type="text/javascript" src="main.js" defer></script>
         <script type="text/javascript" src="page_flip.js" defer></script>
         <script type="text/javascript" src="quotes_menu.js" defer></script>
@@ -76,7 +77,15 @@
                 <div id="open-notes"><div id="notes-arrow"></div></div>
                 <div id="dropdown-outer"><ul id="dropdown-notes">
                     <li id="quotes-text-name">Quotes</li>
-                    <li id="quotes-text-container"><div id="quotes-text-editor" contenteditable="false"></div></li>
+                    <li id="quotes-text-container">
+                        <ul id="quotes-section">
+                            <li><div id="choose-quotes">
+                                <div id="dropdown-quotes-name">Choose quotes</div>
+                                <div id="arrow-down-quotes"></div>
+                            </div></li>
+                            <li><div id="quotes-text-editor" contenteditable="false"></div></li>
+                        </ul>
+                    </li>
                     <li id="block-scheme-name">Block Scheme</li>
                     <li id="block-scheme-editor"></li>
                 </ul></div>

@@ -6,14 +6,48 @@ const blockSchemeEditor = document.getElementById("block-scheme-editor")
 const dropdownNotes = document.getElementById("dropdown-notes")
 const blockNotes = document.getElementById("block-notes")
 
+const quotesMenu = document.getElementById("choose-quotes")
+const notesArrow = document.getElementById("arrow-down-quotes")
+
+function chooseNotes(){
+    notesArrow.style.transform = "rotate(180deg)"
+}
+
+function expandElement(elem, collapseClass, startHeight, height) {
+    // debugger;
+    elem.style.height = startHeight;
+    elem.style.transition = 'none';
+    
+    // Remove the collapse class, and force a layout calculation to get the final height
+    elem.classList.toggle(collapseClass);
+    
+    // Set the start height to begin the transition
+    elem.style.height = startHeight;
+    
+    // wait until the next frame so that everything has time to update before starting the transition
+    requestAnimationFrame(() => {
+      elem.style.transition = '';
+      
+      requestAnimationFrame(() => {
+          elem.style.height = height
+      })
+    })
+}
+
+function afterExpansionNotes(){
+    quotesMenu.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
+    quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 55) + "px"
+}
+
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
 dropdownNotes.style.height = document.getElementById("canvas").getBoundingClientRect().height + "px"
-
 expandElement(quotesEditorContainer, 'collapsed')
 expandElement(blockSchemeEditor, 'collapsed')
 
 var pixHeights = ["0px", (document.getElementById("canvas").getBoundingClientRect().height - 30)/2 +"px", (document.getElementById("canvas").getBoundingClientRect().height - 30) +"px"]
 var openedWindows = []
+
+notesArrow.onclick = chooseNotes
 
 quotesTop.addEventListener('click', () => {
   if(quotesEditor.getAttribute("contenteditable") == "false"){
@@ -39,6 +73,7 @@ quotesTop.addEventListener('click', () => {
     }
     openedWindows.splice(openedWindows.indexOf(quotesEditorContainer), 1)
   }
+  afterExpansionNotes()
 });
 blockSchemeTop.addEventListener('click', () => {
     if(!openedWindows.includes(blockSchemeEditor)){
@@ -63,24 +98,3 @@ blockSchemeTop.addEventListener('click', () => {
         openedWindows.splice(openedWindows.indexOf(blockSchemeEditor), 1)
       }
 });
-
-function expandElement(elem, collapseClass, startHeight, height) {
-  // debugger;
-  elem.style.height = startHeight;
-  elem.style.transition = 'none';
-  
-  // Remove the collapse class, and force a layout calculation to get the final height
-  elem.classList.toggle(collapseClass);
-  
-  // Set the start height to begin the transition
-  elem.style.height = startHeight;
-  
-  // wait until the next frame so that everything has time to update before starting the transition
-  requestAnimationFrame(() => {
-    elem.style.transition = '';
-    
-    requestAnimationFrame(() => {
-        elem.style.height = height
-    })
-  })
-}
