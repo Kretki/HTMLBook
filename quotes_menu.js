@@ -1,5 +1,6 @@
 const quotesEditorContainer = document.getElementById("quotes-text-container")
 const quotesEditor = document.getElementById("quotes-text-editor")
+const quotesEditorLi = document.getElementById("quotes-editor-li")
 const quotesTop = document.getElementById("quotes-text-name")
 const blockSchemeTop = document.getElementById("block-scheme-name")
 const blockSchemeEditor = document.getElementById("block-scheme-editor")
@@ -9,11 +10,8 @@ const blockNotes = document.getElementById("block-notes")
 const quotesMenu = document.getElementById("choose-quotes")
 const notesArrow = document.getElementById("arrow-down-quotes")
 const notesChooser = document.getElementById("saved-notes")
+const outerNotes = document.getElementById("outer-saved")
 const listExNotes = document.getElementById("li-saved-notes")
-
-function chooseNotes(){
-    notesArrow.style.transform = "rotate(180deg)"
-}
 
 function expandElement(elem, collapseClass, startHeight, height) {
     // debugger;
@@ -36,17 +34,37 @@ function expandElement(elem, collapseClass, startHeight, height) {
     })
 }
 
+function chooseNotes(){
+    if(outerNotes.getBoundingClientRect().height<50){
+        notesArrow.style.transform = "rotate(180deg)"
+        expandElement(outerNotes, 'collapsed', "0px", "100px")
+    }
+    else{
+        notesArrow.style.transform = "rotate(0deg)"
+        expandElement(outerNotes, 'collapsed', "100px", "0px")
+    }
+}
+
 function afterExpansionNotes(){
     quotesMenu.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
-    quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 55) + "px"
     notesChooser.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
+    var li = notesChooser.getElementsByTagName("li")
+    for(var i = 0; i<li.length; i++){
+        li[i].style.width = quotesMenu.getBoundingClientRect().width+"px"
+    }
+    li[li.length-1].style.borderBottomLeftRadius = "10px"
+    li[li.length-1].style.borderBottomRightRadius = "10px"
+    quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 55) + "px"
+    quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 50) + "px"
+    quotesEditorLi.style.top = - 25*notesChooser.getElementsByTagName("li").length+10+"px"
 }
 
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
 dropdownNotes.style.height = document.getElementById("canvas").getBoundingClientRect().height + "px"
-// listExNotes.style.height = "75px"
+listExNotes.style.height = 25*notesChooser.getElementsByTagName("li").length+10+"px"
 expandElement(quotesEditorContainer, 'collapsed')
 expandElement(blockSchemeEditor, 'collapsed')
+expandElement(outerNotes, 'collapsed')
 
 var pixHeights = ["0px", (document.getElementById("canvas").getBoundingClientRect().height - 30)/2 +"px", (document.getElementById("canvas").getBoundingClientRect().height - 30) +"px"]
 var openedWindows = []
