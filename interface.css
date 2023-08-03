@@ -230,21 +230,20 @@ body {
     border-radius: 0 0 20px 0;
     transition: transform 0.5s;
 }
-#block-quotes{
+#block-notes{
     position: absolute;
     display: inline;
     transition: transform 0.5s;
-    margin-top: 15px;
     margin-left: 5px;
     user-select: none;
+    vertical-align: top;
 }
-#open-qoutes{
+#open-notes{
     position: relative;
     width: 15px;
     height: 50px;
     border: 2px solid var(--dark-hover-prime-color);
     display: inline-block;
-    top: 9px;
     background-color: var(--dark-prime-color);
     background-position: center;
     background-repeat: no-repeat;
@@ -252,7 +251,7 @@ body {
     cursor: pointer;
     transition: 0.5s;
 }
-#quote-arrow{
+#notes-arrow{
     width: 15px;
     height: 50px;
     background-image: url(triangle-right.svg);
@@ -260,14 +259,16 @@ body {
     transition: 0.5s;
     background-size: 25px 50px;
 }
-#open-qoutes:hover{
+#open-notes:hover{
     background-color: var(--dark-hover-prime-color);
 }
-#dropdown-quotes{
+#dropdown-notes{
     display: inline-block;
     margin-left: -40px;
+    margin-top: 0;
+    vertical-align: top;
 }
-#dropdown-quotes li{
+#dropdown-notes li{
     position: relative;
     width: 0px;
     white-space: nowrap;
@@ -278,10 +279,10 @@ body {
     justify-content: center;
     align-items: center;
     background-color: var(--prime-color);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     user-select: none;
 }
-#dropdown-quotes li:hover{
+#dropdown-notes li:hover{
     background-color: var(--prime-hover-color);
     transition: 0.2s;
 }
