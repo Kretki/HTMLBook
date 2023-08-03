@@ -1,5 +1,6 @@
-const quotesWindow = document.getElementById("quotes")
-const blockSchemeWindow = document.getElementById("block-scheme")
+const quotesEditor = document.getElementById("quotes-text-editor")
+const quotesTop = document.getElementById("quotes-text-name")
+const blockSchemeTop = document.getElementById("block-scheme-name")
 const dropdownNotes = document.getElementById("dropdown-notes")
 const blockNotes = document.getElementById("block-notes")
 
@@ -8,44 +9,44 @@ dropdownNotes.style.height = document.getElementById("canvas").getBoundingClient
 
 var openedWindows = []
 
-function openWindow(element){
+function openQuotes(){
     if(openedWindows.length == 0){
-        element.style.height = document.getElementById("canvas").getBoundingClientRect().height - 30 + "px"
-        element.style.alignItems = "end"
-        element.style.paddingBottom = "5px"
-        openedWindows.push(element)
-    }
-    else{
-        if(openedWindows.length == 1){
-            if(openedWindows[0] == element){
-                element.style.height = "25px"
-                element.style.alignItems = "center"
-                element.style.paddingBottom = "0px"
-                openedWindows.splice(openedWindows.indexOf(element), 1)
-            }
-            else{
-                quotesWindow.style.height = document.getElementById("canvas").getBoundingClientRect().height/2 + "px"
-                quotesWindow.style.alignItems = "end"
-                quotesWindow.style.paddingBottom = "5px"
-                blockSchemeWindow.style.height = document.getElementById("canvas").getBoundingClientRect().height/2 + "px"
-                blockSchemeWindow.style.alignItems = "end"
-                blockSchemeWindow.style.paddingBottom = "5px"
-                openedWindows.push(element)
-            }
-        }
-        else{
-            openedWindows.splice(openedWindows.indexOf(element), 1)
-            element.style.height = "25px"
-            element.style.alignItems = "center"
-            element.style.paddingBottom = "0px"
-            openedWindows[0].style.height = document.getElementById("canvas").getBoundingClientRect().height - 30 + "px"
-        }
+        quotesEditor.style.height = document.getElementById("canvas").getBoundingClientRect().height - 30 + "px"
+        quotesEditor.setAttribute("contenteditable", true)
+        openedWindows.push(quotesEditor)
     }
 }
+quotesTop.addEventListener('click', () => {
+  const content = quotesEditor;
+  expandElement(content, 'collapsed');
+});
 
-quotesWindow.onclick = function(){
-    openWindow(quotesWindow)
-}
-blockSchemeWindow.onclick = function(){
-    openWindow(blockSchemeWindow)
+function expandElement(elem, collapseClass) {
+  // debugger;
+  elem.style.height = '';
+  elem.style.transition = 'none';
+  
+  const startHeight = window.getComputedStyle(elem).height;
+  
+  // Remove the collapse class, and force a layout calculation to get the final height
+  elem.classList.toggle(collapseClass);
+  const height = window.getComputedStyle(elem).height;
+  
+  // Set the start height to begin the transition
+  elem.style.height = startHeight;
+  
+  // wait until the next frame so that everything has time to update before starting the transition
+  requestAnimationFrame(() => {
+    elem.style.transition = '';
+    
+    requestAnimationFrame(() => {
+        elem.style.height = height
+    })
+  })
+  
+  // Clear the saved height values after the transition
+  elem.addEventListener('transitionend', () => {
+    elem.style.height = '';
+    elem.removeEventListener('transitionend', arguments.callee);
+  }); 
 }

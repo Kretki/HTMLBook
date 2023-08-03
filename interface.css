@@ -262,29 +262,42 @@ body {
 #open-notes:hover{
     background-color: var(--dark-hover-prime-color);
 }
-#dropdown-notes{
+#dropdown-outer{
     display: inline-block;
     margin-left: -40px;
     margin-top: 0;
     vertical-align: top;
 }
+#dropdown-notes{
+    margin-top: 0;
+    vertical-align: top;
+}
 #dropdown-notes li{
     position: relative;
+    display: grid;
     width: 0px;
     white-space: nowrap;
     transition: width 1s ease-in-out;
-    height: 25px;
+    background-color: var(--prime-color);
+    transition: all 0.5s ease-in-out;
+    user-select: none;
     overflow:hidden;
-    display: flex;
+}
+#quotes-text-editor, #block-scheme-editor{
+    margin-bottom: 4px;
+    height: 100px;
+}
+#quotes-text-editor.collapsed {
+    height: 0;
+}
+#quotes-text-name, #block-scheme-name{
+    height: 25px;
     justify-content: center;
     align-items: center;
-    background-color: var(--prime-color);
-    margin-bottom: 4px;
-    user-select: none;
 }
-#dropdown-notes li:hover{
+#quotes-text-name:hover, #block-scheme-name:hover{
     background-color: var(--prime-hover-color);
-    transition: 0.2s;
+    cursor: pointer;
 }
 #bottom{
     height: 100px;
