@@ -8,6 +8,8 @@ const blockNotes = document.getElementById("block-notes")
 
 const quotesMenu = document.getElementById("choose-quotes")
 const notesArrow = document.getElementById("arrow-down-quotes")
+const notesChooser = document.getElementById("saved-notes")
+const listExNotes = document.getElementById("li-saved-notes")
 
 function chooseNotes(){
     notesArrow.style.transform = "rotate(180deg)"
@@ -37,10 +39,12 @@ function expandElement(elem, collapseClass, startHeight, height) {
 function afterExpansionNotes(){
     quotesMenu.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
     quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 55) + "px"
+    notesChooser.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
 }
 
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
 dropdownNotes.style.height = document.getElementById("canvas").getBoundingClientRect().height + "px"
+// listExNotes.style.height = "75px"
 expandElement(quotesEditorContainer, 'collapsed')
 expandElement(blockSchemeEditor, 'collapsed')
 
