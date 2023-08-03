@@ -277,17 +277,16 @@ body {
     display: grid;
     width: 0px;
     white-space: nowrap;
-    transition: width 1s ease-in-out;
     background-color: var(--prime-color);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.7s ease-in-out;
     user-select: none;
     overflow:hidden;
 }
 #quotes-text-editor, #block-scheme-editor{
     margin-bottom: 4px;
-    height: 100px;
+    height: 200px;
 }
-#quotes-text-editor.collapsed {
+#quotes-text-editor.collapsed, #block-scheme-editor.collapsed {
     height: 0;
 }
 #quotes-text-name, #block-scheme-name{
