@@ -1,3 +1,4 @@
+const quotesEditorContainer = document.getElementById("quotes-text-container")
 const quotesEditor = document.getElementById("quotes-text-editor")
 const quotesTop = document.getElementById("quotes-text-name")
 const blockSchemeTop = document.getElementById("block-scheme-name")
@@ -8,7 +9,7 @@ const blockNotes = document.getElementById("block-notes")
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
 dropdownNotes.style.height = document.getElementById("canvas").getBoundingClientRect().height + "px"
 
-expandElement(quotesEditor, 'collapsed')
+expandElement(quotesEditorContainer, 'collapsed')
 expandElement(blockSchemeEditor, 'collapsed')
 
 var pixHeights = ["0px", (document.getElementById("canvas").getBoundingClientRect().height - 30)/2 +"px", (document.getElementById("canvas").getBoundingClientRect().height - 30) +"px"]
@@ -16,27 +17,27 @@ var openedWindows = []
 
 quotesTop.addEventListener('click', () => {
   if(quotesEditor.getAttribute("contenteditable") == "false"){
-    quotesEditor.style.height = document.getElementById("canvas").getBoundingClientRect().height - 30 + "px"
+    quotesEditorContainer.style.height = document.getElementById("canvas").getBoundingClientRect().height - 30 + "px"
     quotesEditor.setAttribute("contenteditable", true)
     if(openedWindows.length == 0){
-        expandElement(quotesEditor, 'collapsed', pixHeights[0], pixHeights[2]);
+        expandElement(quotesEditorContainer, 'collapsed', pixHeights[0], pixHeights[2]);
     }
     else{
-        expandElement(quotesEditor, 'collapsed', pixHeights[0], pixHeights[1]);
+        expandElement(quotesEditorContainer, 'collapsed', pixHeights[0], pixHeights[1]);
         expandElement(blockSchemeEditor, 'collapsed', pixHeights[2], pixHeights[1]);
     }
-    openedWindows.push(quotesEditor)
+    openedWindows.push(quotesEditorContainer)
   }
   else{
     quotesEditor.setAttribute("contenteditable", false)
     if(openedWindows.length == 1){
-        expandElement(quotesEditor, 'collapsed', pixHeights[2], pixHeights[0]);
+        expandElement(quotesEditorContainer, 'collapsed', pixHeights[2], pixHeights[0]);
     }
     else{
-        expandElement(quotesEditor, 'collapsed', pixHeights[1], pixHeights[0]);
+        expandElement(quotesEditorContainer, 'collapsed', pixHeights[1], pixHeights[0]);
         expandElement(blockSchemeEditor, 'collapsed', pixHeights[1], pixHeights[2]);
     }
-    openedWindows.splice(openedWindows.indexOf(quotesEditor), 1)
+    openedWindows.splice(openedWindows.indexOf(quotesEditorContainer), 1)
   }
 });
 blockSchemeTop.addEventListener('click', () => {
@@ -47,7 +48,7 @@ blockSchemeTop.addEventListener('click', () => {
         }
         else{
             expandElement(blockSchemeEditor, 'collapsed', pixHeights[0], pixHeights[1]);
-            expandElement(quotesEditor, 'collapsed', pixHeights[2], pixHeights[1]);
+            expandElement(quotesEditorContainer, 'collapsed', pixHeights[2], pixHeights[1]);
         }
         openedWindows.push(blockSchemeEditor)
       }
@@ -57,7 +58,7 @@ blockSchemeTop.addEventListener('click', () => {
         }
         else{
             expandElement(blockSchemeEditor, 'collapsed', pixHeights[1], pixHeights[0]);
-            expandElement(quotesEditor, 'collapsed', pixHeights[1], pixHeights[2]);
+            expandElement(quotesEditorContainer, 'collapsed', pixHeights[1], pixHeights[2]);
         }
         openedWindows.splice(openedWindows.indexOf(blockSchemeEditor), 1)
       }

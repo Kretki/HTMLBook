@@ -276,17 +276,22 @@ body {
     position: relative;
     display: grid;
     width: 0px;
+    margin-right: 0;
     white-space: nowrap;
     background-color: var(--prime-color);
     transition: all 0.7s ease-in-out;
     user-select: none;
     overflow:hidden;
 }
-#quotes-text-editor, #block-scheme-editor{
+#quotes-text-container, #block-scheme-editor{
     margin-bottom: 4px;
     height: 200px;
 }
-#quotes-text-editor.collapsed, #block-scheme-editor.collapsed {
+#quotes-text-editor{
+    margin: 10px 10px 10px 10px;
+    background-color: var(--bacground-color);
+}
+#quotes-text-container.collapsed, #block-scheme-editor.collapsed {
     height: 0;
 }
 #quotes-text-name, #block-scheme-name{
