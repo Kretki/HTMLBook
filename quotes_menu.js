@@ -12,6 +12,8 @@ const notesArrow = document.getElementById("arrow-down-quotes")
 const notesChooser = document.getElementById("saved-notes")
 const outerNotes = document.getElementById("outer-saved")
 const listExNotes = document.getElementById("li-saved-notes")
+const addNote = document.getElementById("add-note")
+const acceptNote = document.getElementById("accept-note")
 
 function expandElement(elem, collapseClass, startHeight, height) {
     // debugger;
@@ -45,18 +47,40 @@ function chooseNotes(){
     }
 }
 
+function addOneNote(){
+    var li = document.createElement("li")
+    li.setAttribute("id", "quote-"+notesChooser.getElementsByTagName("li").length)
+    li.setAttribute("class", "notes")
+    li.style.height = "25px"
+    li.style.transition = "0.4s"
+    li.style.display = "block"
+    li.style.borderBottom = "2px solid #221735"
+    li.style.zIndex ="3"
+    li.style.cursor = "pointer"
+    li.style.width = quotesMenu.getBoundingClientRect().width+"px"
+    li.style.borderBottomLeftRadius = "10px"
+    li.style.borderBottomRightRadius = "10px"
+    li.style.backgroundColor = "#7f5fb9"
+    document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomLeftRadius = "0px"
+    document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomRightRadius = "0px"
+    notesChooser.appendChild(li)
+}
+
 function afterExpansionNotes(){
     quotesMenu.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
     notesChooser.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
-    var li = notesChooser.getElementsByTagName("li")
+    var li = document.getElementsByClassName("notes")
     for(var i = 0; i<li.length; i++){
         li[i].style.width = quotesMenu.getBoundingClientRect().width+"px"
     }
     li[li.length-1].style.borderBottomLeftRadius = "10px"
     li[li.length-1].style.borderBottomRightRadius = "10px"
-    quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 55) + "px"
-    quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 50) + "px"
-    quotesEditorLi.style.top = - 25*notesChooser.getElementsByTagName("li").length+10+"px"
+    quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 110) + "px"
+    quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 80) + "px"
+    quotesEditorLi.style.top = - 25*notesChooser.getElementsByTagName("li").length-7+"px"
+    quotesEditorLi.style.width = quotesMenu.getBoundingClientRect().width+20+"px"
+    quotesEditor.style.width = quotesMenu.getBoundingClientRect().width-20+"px"
+    acceptNote.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
 }
 
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
@@ -70,6 +94,7 @@ var pixHeights = ["0px", (document.getElementById("canvas").getBoundingClientRec
 var openedWindows = []
 
 notesArrow.onclick = chooseNotes
+addNote.onclick = addOneNote
 
 quotesTop.addEventListener('click', () => {
   if(quotesEditor.getAttribute("contenteditable") == "false"){

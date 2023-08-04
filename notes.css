@@ -105,6 +105,14 @@
     visibility: hidden;
     height: 200px;
 }
+#outer-saved{
+    height: 100px;
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+}
+#outer-saved.collapsed{
+    height: 0;
+}
 #saved-notes{
     position: relative;
     visibility: visible;
@@ -119,26 +127,23 @@
     width: 100px;
 }
 #saved-notes li{
-    height: 25px;
     background-color: var(--secondary-color);
+}
+.notes{
+    height: 25px;
     transition: 0.4s;
     display: block;
     border-bottom: 2px solid var(--prime-color);
-    z-index: 2;
-}
-#outer-saved{
-    height: 100px;
-    overflow: hidden;
-    transition: all 1s ease-in-out;
-}
-#outer-saved.collapsed{
-    height: 0;
-}
-#add-note{
-    border-radius: 10px 10px 0 0;
+    z-index: 3;
+    cursor: pointer;
 }
 #saved-notes li:hover{
     background-color: var(--bright-color);
+}
+#add-note{
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    padding-top: 3px;
 }
 #quotes-editor-li{
     position: relative;
@@ -154,4 +159,24 @@
     margin-top: 5px;
     background-color: var(--bacground-color);
     border-radius: 5px;
+    font-size: 1.5em;
+    font-family: Georgia, serif;
+    white-space: pre-wrap;
+    padding: 10px 10px 10px 10px;
+}
+#accept-note-li{
+    margin-top: -30px;
+    padding-left: 10px;
+}
+#accept-note{
+    height: 25px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 5px;
+    width: 10px;
+}
+#accept-note:hover{
+    background-color: var(--bright-color);
+    transition: 0.5s;
 }
