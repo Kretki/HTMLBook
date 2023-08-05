@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book</title>
+        <link rel="stylesheet" href="interface.css">
+        <link rel="stylesheet" href="book.css">
+        <link rel="stylesheet" href="notes.css">
+        <script type="text/javascript" src="main.js" defer></script>
+        <script type="text/javascript" src="page_flip.js" defer></script>
+        <script type="text/javascript" src="quotes_menu.js" defer></script>
+    </head>
+    <body>
+        <ul class="head-list">
+            <li id="li-menu"><button id="main-menu"></button></li>
+            <li id="li-head"><div class="head-menu">
+                <button id="set-reading">Start reading</button>
+                <button id="set-hint">Set text</button>
+                <button id="save-file">Save file</button>
+            </div></li>
+        </ul>
+        <div id="main-container">
+            <div id="main-block">
+                <ul id="header-bubbles">
+                    <li><div id="left-arrow"></div></li>
+                    <li><div id="center-bubble">
+                        <div id="light-center"></div>
+                        <div id="bottom-bubbles-back"></div>
+                    </div></li>
+                    <li><div id="right-arrow"></div></li>
+                </ul>
+                <ul id="text-header-outliner">
+                    <li id="left-corner-u"></li><li id="header-liner-u"></li><li id="right-corner-u"></li>
+                </ul>
+                <div id="canvas">
+                    <div id="p1" class="paper">
+                        <div class="front">
+                            <div id="f1" class="front-content">
+                                <h1>Front 1</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div id="b1" class="back-content">
+                                <h1>Back 1</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="p2" class="paper">
+                        <div class="front">
+                            <div id="f2" class="front-content">
+                                <h1>Front 2</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div id="b2" class="back-content">
+                                <h1>Back 2</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="p3" class="paper">
+                        <div class="front">
+                            <div id="f3" class="front-content">
+                                <h1>Front 3</h1>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div id="b3" class="back-content">
+                                <h1>Back 3</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul id="text-bottom-outliner">
+                    <li id="left-corner-b"></li><li id="header-liner-b"></li><li id="right-corner-b"></li>
+                </ul>
+            </div>
+            <div id="block-notes">
+                <div id="open-notes"><div id="notes-arrow"></div></div>
+                <div id="dropdown-outer"><ul id="dropdown-notes">
+                    <li id="quotes-text-name">Quotes</li>
+                    <li id="quotes-text-container">
+                        <ul id="quotes-section">
+                            <li><div id="choose-quotes">
+                                <div id="dropdown-quotes-name">Choose quotes</div>
+                                <div id="arrow-down-quotes"></div>
+                            </div></li>
+                            <li id="li-saved-notes"><div id="outer-saved"><ul id="saved-notes">
+                                <li id="add-note" class="notes">Add note</li>
+                            </ul></div></li>
+                            <li id="quotes-editor-li"><div id="quotes-text-editor" contenteditable="false"></div></li>
+                            <li id="accept-note-li"><div id="accept-note">Accept</div></li>
+                        </ul>
+                    </li>
+                    <li id="block-scheme-name">Block Scheme</li>
+                    <li id="block-scheme-editor"></li>
+                </ul></div>
+            </div>
+        </div>
+        <div id="bottom"></div>
+    </body>
+</html>

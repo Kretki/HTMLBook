@@ -61,6 +61,8 @@ function addOneNote(){
     li.style.borderBottomLeftRadius = "10px"
     li.style.borderBottomRightRadius = "10px"
     li.style.backgroundColor = "#7f5fb9"
+    listExNotes.style.height = listExNotes.getBoundingClientRect().height+27+"px"
+    // quotesEditor.style.top = (quotesEditor.getBoundingClientRect().top + 27) + "px"
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomLeftRadius = "0px"
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomRightRadius = "0px"
     notesChooser.appendChild(li)
