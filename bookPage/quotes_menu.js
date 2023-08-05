@@ -51,21 +51,15 @@ function addOneNote(){
     var li = document.createElement("li")
     li.setAttribute("id", "quote-"+notesChooser.getElementsByTagName("li").length)
     li.setAttribute("class", "notes")
-    li.style.height = "25px"
-    li.style.transition = "0.4s"
-    li.style.display = "block"
-    li.style.borderBottom = "2px solid #221735"
-    li.style.zIndex ="3"
-    li.style.cursor = "pointer"
     li.style.width = quotesMenu.getBoundingClientRect().width+"px"
     li.style.borderBottomLeftRadius = "10px"
     li.style.borderBottomRightRadius = "10px"
     li.style.backgroundColor = "#7f5fb9"
     listExNotes.style.height = listExNotes.getBoundingClientRect().height+27+"px"
-    // quotesEditor.style.top = (quotesEditor.getBoundingClientRect().top + 27) + "px"
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomLeftRadius = "0px"
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomRightRadius = "0px"
     notesChooser.appendChild(li)
+    quotesEditorLi.style.top = - 26*notesChooser.getElementsByTagName("li").length-7+"px"
 }
 
 function afterExpansionNotes(){
@@ -78,11 +72,12 @@ function afterExpansionNotes(){
     li[li.length-1].style.borderBottomLeftRadius = "10px"
     li[li.length-1].style.borderBottomRightRadius = "10px"
     quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 110) + "px"
-    quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 80) + "px"
+    quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - 70) + "px"
     quotesEditorLi.style.top = - 25*notesChooser.getElementsByTagName("li").length-7+"px"
     quotesEditorLi.style.width = quotesMenu.getBoundingClientRect().width+20+"px"
     quotesEditor.style.width = quotesMenu.getBoundingClientRect().width-20+"px"
     acceptNote.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
+    acceptNote.style.top = quotesEditor.getBoundingClientRect().height+10+"px"
 }
 
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"
