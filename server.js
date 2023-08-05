@@ -18,3 +18,11 @@ app.use(express.static(__dirname+'/bookPage'))
 app.get('/', (req, res) => {
     res.sendFile(createPath('index'))
 })
+
+let {PythonShell} = require('python-shell')
+
+PythonShell.run("parse.py", null).then(messages=>{
+    app.get('/sample-api', (req, res) => {
+        res.json({text:messages})
+    })
+})

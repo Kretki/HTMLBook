@@ -14,6 +14,14 @@ let currentLocation = 1
 let numOfPapers = 3
 let maxLocation = numOfPapers+1
 
+// $(function(){
+//     var msgFromServer
+//     $.get("/sample-api", function( data ){
+//         msgFromServer = data.text
+//         alert("message catched")
+//     })
+// })
+
 function goNextPage(){
     if(currentLocation<maxLocation){
         switch(currentLocation){
