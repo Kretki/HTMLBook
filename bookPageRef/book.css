@@ -17,6 +17,9 @@
 .paper > *{
     color: black;
 }
+/* .notransition{
+    transition: none !important;
+} */
 .front, .back{
     background-color: white;
     position: absolute;
@@ -41,7 +44,6 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .back-content{
     transform: rotateY(180deg);
@@ -60,3 +62,14 @@
 #p3{
     z-index: 2;
 }
+#f1{
+    display: grid;
+    align-items: center;
+}
+/* #f1>*{
+    margin: 0 auto;
+} */
+/* .back-content>p{
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+} */
