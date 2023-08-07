@@ -17,8 +17,13 @@ app.use(express.static(__dirname+'/bookPageRef'))
 
 let {PythonShell} = require('python-shell')
 
-PythonShell.run("parse.py", null).then(messages=>{
+let pyOptions = {
+    'mode':'json'
+}
+
+PythonShell.run("parse.py", pyOptions).then(messages=>{
+    const textMes = messages[0]
     app.get('/', (req, res) => {
-        res.render(createPath('index'), {messages})
+        res.render(createPath('index'), {textMes})
     })
 })

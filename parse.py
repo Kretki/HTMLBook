@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as EL
+import json
 
 tree = EL.parse('Aristotel_Politika.fb2')
 root = tree.getroot()
@@ -7,33 +8,26 @@ desc = root.find(prefix+"description").find(prefix+"title-info")
 author = desc.find(prefix+"author")
 ann = desc.find(prefix+"annotation")
 body = root.find(prefix+"body")
-deep = body.findall(prefix+"title")+body.findall(prefix+"section")
-print(len(body.findall(prefix+"title")), len(body.findall(prefix+"section")))
-checker = False
-for i in deep:
-    if i.find(prefix+"section") != None:
-        checker = True
-while checker:
-    deep_new = []
-    for i in range(len(deep)):
-        if deep[i].find(prefix+"section") != None:
-            deep_new += deep[i].findall(prefix+"title")+deep[i].findall(prefix+"section")
-        else:
-            deep_new += deep[i]
-    deep = deep_new
-    checker = False
-    for i in deep:
-        if i.find(prefix+"section") != None:
-            checker = True
-deep_new = []
-for i in range(len(deep)):
-    if deep[i].find(prefix+"p") != None:
-        deep_new += deep[i].findall(prefix+"p")
-    else:
-        deep_new += deep[i]
-deep = deep_new
-for i in range(len(deep)):
-    deep[i] = deep[i].text
-    deep[i] = deep[i].replace("\xa0", " ")
-# for phrase in deep:
-#     print(phrase)
+authors = [author.find(prefix+"first-name").text, author.find(prefix+"last-name").text]
+authors = [au for au in authors if au is not None]
+deep = {"author":authors, "annotation": [text.text.replace("\xa0", " ") for text in ann.findall(prefix+"p")]}
+title = []
+text = []
+title_count = 0
+text_count = 0
+for elem in body.iter():
+    if elem.tag == prefix+"title":
+        if(text != []):
+            deep[f"text-{text_count}"] = text
+        text = []
+        text_count += 1
+        title += [text.text.replace("\xa0", " ") for text in elem.findall(prefix+"p")]
+    if elem.tag == prefix+"p":
+        if(title != []):
+            deep[f"titile-{title_count}"] = title
+        title = []
+        title_count += 1
+        text += [elem.text.replace("\xa0", " ")]
+if(text != []):
+    deep[f"text-{text_count}"] = text
+print(json.dumps(deep))
