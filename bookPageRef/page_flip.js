@@ -18,34 +18,43 @@ const allBack = document.getElementsByClassName("back")
 
 const liTextData = document.getElementById("text-for-book").getElementsByTagName("li")
 
-function setContentToPages(ann_rest_text){
+function splitTextBetweenPages(rest_text){
     var all_text = []
-    while(ann_rest_text.length != 0){
+    while(rest_text.length != 0){
         var stop = false
         var textToWrite = ""
         backP1.innerHTML = ""
         while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
-            if(ann_rest_text.length == 0){
+            if(rest_text.length == 0){
                 stop = true
                 break
             }
-            textToWrite = ann_rest_text.shift()
+            textToWrite = rest_text.shift()
             backP1.innerHTML = backP1.textContent+" "+textToWrite
+            if(textToWrite == "\f"){
+                stop = true
+                break
+            }
         }
         backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
         all_text.push(backP1.textContent)
         if(!stop){
-            ann_rest_text.unshift(textToWrite)
+            rest_text.unshift(textToWrite)
         }
     }
     return all_text
 }
 
+// function setTextForPages(all_text){
+
+// }
+
 var main_all_text = []
 var ann_rest_text = []
 var writable_p = [backP1, frontP2, backP2, frontP3]
+var ifNewTitle = false
 for(var i = 0; i<liTextData.length; i++){
-    var spli = liTextData[i].textContent.split(":")
+    var spli = liTextData[i].textContent.split("0x1x0")
     if(spli[0] == "author"){
         frontH3.innerHTML = spli[1]
     }
@@ -56,13 +65,22 @@ for(var i = 0; i<liTextData.length; i++){
         ann_rest_text.push.apply(ann_rest_text, spli[1].split(" "))
     }
     else{
+        if(spli[0].substring(0,6) == "title" && !ifNewTitle){
+            main_all_text.push("\f")
+            ifNewTitle = true
+        }
+        if(spli[0].substring(0,6) != "title"){
+            ifNewTitle = false
+        }
         main_all_text.push.apply(main_all_text, spli[1].split(" "))
         main_all_text.push("\n")
     }
 }
 
 var all_text = []
-var all_text = setContentToPages(ann_rest_text)
+var all_text = splitTextBetweenPages(ann_rest_text)
+all_text.push.apply(all_text, splitTextBetweenPages(main_all_text))
+console.log(all_text.length)
 backP1.innerHTML = all_text[1]
 
 
