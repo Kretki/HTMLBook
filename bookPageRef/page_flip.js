@@ -18,24 +18,27 @@ const allBack = document.getElementsByClassName("back")
 
 const liTextData = document.getElementById("text-for-book").getElementsByTagName("li")
 
-function setContentToPages(all_text){
-    var stop = false
-    if(ann_rest_text.length != 0){
+function setContentToPages(ann_rest_text){
+    var all_text = []
+    while(ann_rest_text.length != 0){
+        var stop = false
         var textToWrite = ""
         backP1.innerHTML = ""
         while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
             if(ann_rest_text.length == 0){
-                textToWrite = ann_rest_text.shift()
                 stop = true
                 break
             }
+            textToWrite = ann_rest_text.shift()
             backP1.innerHTML = backP1.textContent+" "+textToWrite
         }
+        backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
         all_text.push(backP1.textContent)
         if(!stop){
             ann_rest_text.unshift(textToWrite)
         }
     }
+    return all_text
 }
 
 var main_all_text = []
@@ -59,8 +62,8 @@ for(var i = 0; i<liTextData.length; i++){
 }
 
 var all_text = []
-// setContentToPages(all_text)
-// backP1.innerHTML = all_text[0]
+var all_text = setContentToPages(ann_rest_text)
+backP1.innerHTML = all_text[1]
 
 
 nextPageBtn.addEventListener("click", goNextPage)
