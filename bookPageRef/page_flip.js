@@ -9,10 +9,38 @@ const paper3 = document.getElementById("p3")
 const frontH1 = document.getElementById("front-h1")
 const frontH3 = document.getElementById("front-h3")
 const backP1 = document.getElementById("back1-p")
+const frontP2 = document.getElementById("front2-p")
+const backP2 = document.getElementById("back2-p")
+const frontP3 = document.getElementById("front3-p")
+const backP3 = document.getElementById("back3-p")
 const allFront = document.getElementsByClassName("front")
 const allBack = document.getElementsByClassName("back")
 
 const liTextData = document.getElementById("text-for-book").getElementsByTagName("li")
+
+function setContentToPages(all_text){
+    var stop = false
+    if(ann_rest_text.length != 0){
+        var textToWrite = ""
+        backP1.innerHTML = ""
+        while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
+            if(ann_rest_text.length == 0){
+                textToWrite = ann_rest_text.shift()
+                stop = true
+                break
+            }
+            backP1.innerHTML = backP1.textContent+" "+textToWrite
+        }
+        all_text.push(backP1.textContent)
+        if(!stop){
+            ann_rest_text.unshift(textToWrite)
+        }
+    }
+}
+
+var main_all_text = []
+var ann_rest_text = []
+var writable_p = [backP1, frontP2, backP2, frontP3]
 for(var i = 0; i<liTextData.length; i++){
     var spli = liTextData[i].textContent.split(":")
     if(spli[0] == "author"){
@@ -22,9 +50,17 @@ for(var i = 0; i<liTextData.length; i++){
         frontH1.innerHTML = spli[1]
     }
     if(spli[0] == "annotation"){
-        backP1.innerHTML = spli[1]
+        ann_rest_text.push.apply(ann_rest_text, spli[1].split(" "))
+    }
+    else{
+        main_all_text.push.apply(main_all_text, spli[1].split(" "))
+        main_all_text.push("\n")
     }
 }
+
+var all_text = []
+// setContentToPages(all_text)
+// backP1.innerHTML = all_text[0]
 
 
 nextPageBtn.addEventListener("click", goNextPage)
@@ -52,8 +88,24 @@ function skipToPrevPage(){
     currentLocation--
     setTimeout(()=>{
         disableTransition()
+        backP1.innerHTML = backP2.textContent
+        frontP2.innerHTML = frontP3.textContent
         paper2.classList.remove("flipped")
         paper2.style.zIndex = 3
+    }, 600)
+    setTimeout(()=>{
+        enableTransition()
+    }, 700)
+}
+
+function skipToNextPage(){
+    currentLocation++
+    setTimeout(()=>{
+        disableTransition()
+        backP2.innerHTML = backP1.textContent
+        frontP3.innerHTML = frontP2.textContent
+        paper2.classList.add("flipped")
+        paper2.style.zIndex = 2
     }, 600)
     setTimeout(()=>{
         enableTransition()
@@ -75,7 +127,7 @@ function goNextPage(){
                 setTimeout(()=>{
                     paper2.style.zIndex = 2
                 }, 500)
-                skipToPrevPage()
+                // skipToPrevPage()
                 break
             case 3:
                 paper3.classList.add("flipped")
@@ -101,7 +153,10 @@ function goPrevPage(){
                 break
             case 3:
                 paper2.classList.remove("flipped")
+                setTimeout(()=>{
                 paper2.style.zIndex = 3
+                })
+                // skipToNextPage()
                 break
             case 4:
                 paper3.classList.remove("flipped")

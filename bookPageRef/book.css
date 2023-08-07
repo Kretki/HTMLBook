@@ -5,6 +5,7 @@
     padding-right: 15px;
     padding-bottom: 5px;
     transition: transform 0.5s;
+    font-size: 32px;
 }
 .paper{
     position: absolute;
@@ -70,6 +71,10 @@
     margin: 0 auto;
 }
 .back-content>p{
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+}
+.front-content>p{
     margin: 10px 10px 10px 10px;
     text-align: justify;
 }
