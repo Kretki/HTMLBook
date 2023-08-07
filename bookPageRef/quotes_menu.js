@@ -59,7 +59,6 @@ function addOneNote(){
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomLeftRadius = "0px"
     document.getElementsByClassName("notes")[document.getElementsByClassName("notes").length-1].style.borderBottomRightRadius = "0px"
     notesChooser.appendChild(li)
-    quotesEditorLi.style.top = - 26*notesChooser.getElementsByTagName("li").length-7+"px"
 }
 
 function afterExpansionNotes(){
@@ -73,11 +72,12 @@ function afterExpansionNotes(){
     li[li.length-1].style.borderBottomRightRadius = "10px"
     quotesEditor.style.height = (document.getElementById("canvas").getBoundingClientRect().height - quotesMenu.getBoundingClientRect().height - 110) + "px"
     quotesEditorLi.style.height = (document.getElementById("canvas").getBoundingClientRect().height - 70) + "px"
-    quotesEditorLi.style.top = - 25*notesChooser.getElementsByTagName("li").length-7+"px"
+    quotesEditorLi.style.top = notesChooser.getBoundingClientRect().height-15+"px"
     quotesEditorLi.style.width = quotesMenu.getBoundingClientRect().width+20+"px"
     quotesEditor.style.width = quotesMenu.getBoundingClientRect().width-20+"px"
     acceptNote.style.width = (quotesEditorContainer.getBoundingClientRect().width - 20) + "px"
     acceptNote.style.top = quotesEditor.getBoundingClientRect().height+10+"px"
+    listExNotes.style.marginTop = -quotesEditor.getBoundingClientRect().height-acceptNote.getBoundingClientRect().height-15+"px"
 }
 
 blockNotes.style.top = document.getElementById("header-liner-u").getBoundingClientRect().height+3+"px"

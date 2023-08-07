@@ -5,7 +5,7 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
-const PORT = 3000
+const PORT = 4000
 
 app.listen(PORT, (error) => {
     error ? constole.log(error) : console.log(`listening port ${PORT}`)
@@ -13,16 +13,12 @@ app.listen(PORT, (error) => {
 
 const createPath = (page) => path.resolve(__dirname, 'bookPageEjs', `${page}.ejs`)
 
-app.use(express.static(__dirname+'/bookPage'))
-
-app.get('/', (req, res) => {
-    res.sendFile(createPath('index'))
-})
+app.use(express.static(__dirname+'/bookPageRef'))
 
 let {PythonShell} = require('python-shell')
 
 PythonShell.run("parse.py", null).then(messages=>{
-    app.get('/sample-api', (req, res) => {
-        res.json({text:messages})
+    app.get('/', (req, res) => {
+        res.render(createPath('index'), {messages})
     })
 })

@@ -102,6 +102,8 @@
     transition: 0.5s;
 }
 #li-saved-notes{
+    position: absolute;
+    margin-top: -100px;
     visibility: hidden;
     height: 200px;
 }

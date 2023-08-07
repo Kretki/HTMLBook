@@ -8,6 +8,13 @@
         <script type="text/javascript" src="main.js" defer></script>
         <script type="text/javascript" src="page_flip.js" defer></script>
         <script type="text/javascript" src="quotes_menu.js" defer></script>
+        <ul id="text-for-book" hidden>
+            <% for(var i=0; i<messages.length; i++){ %>
+                <li>
+                    <%= messages[i] %>
+                </li>
+            <% } %>
+        </ul>
     </head>
     <body>
         <ul class="head-list">
@@ -83,10 +90,10 @@
                                 <div id="dropdown-quotes-name">Choose quotes</div>
                                 <div id="arrow-down-quotes"></div>
                             </div></li>
+                            <li id="quotes-editor-li"><div id="quotes-text-editor" contenteditable="false"></div><div id="accept-note">Accept</div></li>
                             <li id="li-saved-notes"><div id="outer-saved"><ul id="saved-notes">
                                 <li id="add-note" class="notes">Add note</li>
                             </ul></div></li>
-                            <li id="quotes-editor-li"><div id="quotes-text-editor" contenteditable="false"></div><div id="accept-note">Accept</div></li>
                         </ul>
                     </li>
                     <li id="block-scheme-name">Block Scheme</li>

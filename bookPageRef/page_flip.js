@@ -7,20 +7,14 @@ const paper1 = document.getElementById("p1")
 const paper2 = document.getElementById("p2")
 const paper3 = document.getElementById("p3")
 
+const textData = document.getElementById("text-for-book")
+
 nextPageBtn.addEventListener("click", goNextPage)
 prevPageBtn.addEventListener("click", goPrevPage)
 
 let currentLocation = 1
 let numOfPapers = 3
 let maxLocation = numOfPapers+1
-
-// $(function(){
-//     var msgFromServer
-//     $.get("/sample-api", function( data ){
-//         msgFromServer = data.text
-//         alert("message catched")
-//     })
-// })
 
 function goNextPage(){
     if(currentLocation<maxLocation){

@@ -5,13 +5,10 @@ root = tree.getroot()
 prefix = root.tag[:root.tag.find("}")+1] 
 desc = root.find(prefix+"description").find(prefix+"title-info")
 author = desc.find(prefix+"author")
-print(author.find(prefix+"first-name").text)
-print(author.find(prefix+"last-name").text)
 ann = desc.find(prefix+"annotation")
-for text in ann.findall(prefix+"p"):
-    print(text.text)
 body = root.find(prefix+"body")
 deep = body.findall(prefix+"title")+body.findall(prefix+"section")
+print(len(body.findall(prefix+"title")), len(body.findall(prefix+"section")))
 checker = False
 for i in deep:
     if i.find(prefix+"section") != None:
@@ -38,4 +35,5 @@ deep = deep_new
 for i in range(len(deep)):
     deep[i] = deep[i].text
     deep[i] = deep[i].replace("\xa0", " ")
-print(deep)
+# for phrase in deep:
+#     print(phrase)
