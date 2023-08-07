@@ -54,8 +54,10 @@ function skipToPrevPage(){
         disableTransition()
         paper2.classList.remove("flipped")
         paper2.style.zIndex = 3
-        }, 600)
-    enableTransition()
+    }, 600)
+    setTimeout(()=>{
+        enableTransition()
+    }, 700)
 }
 
 function goNextPage(){
@@ -73,7 +75,7 @@ function goNextPage(){
                 setTimeout(()=>{
                     paper2.style.zIndex = 2
                 }, 500)
-                // skipToPrevPage()
+                skipToPrevPage()
                 break
             case 3:
                 paper3.classList.add("flipped")
