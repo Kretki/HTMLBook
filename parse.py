@@ -45,7 +45,7 @@ for elem in body.iter():
             deep[f"titile-{title_count}"] = title
             title = ""
             title_count += 1
-        text += elem.text.replace("\xa0", " ")+" "
+        text += elem.text.replace("\xa0", " ")+"\n"
 if(text != ""):
     deep[f"text-{text_count}"] = text
 print(json.dumps(deep))

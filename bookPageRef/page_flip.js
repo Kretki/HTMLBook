@@ -41,13 +41,38 @@ function splitTextBetweenPages(rest_text){
         if(!stop){
             rest_text.unshift(textToWrite)
         }
+        if(all_text.length>10){
+            console.log(all_text)
+            break
+        }
     }
     return all_text
 }
 
-// function setTextForPages(all_text){
-
-// }
+function setTextForPages(all_text, pages, curpage, direction){
+    if(curpage == -2){
+        pages[0].innerHTML = all_text[curpage+2]
+        pages[1].innerHTML = all_text[curpage+3]
+        pages[2].innerHTML = all_text[curpage+4]
+        pages[3].innerHTML = all_text[curpage+5]
+    }
+    else if(curpage>=all_text.length-1){
+        pages[2].innerHTML = all_text[curpage]
+        pages[3].innerHTML = all_text[curpage+1]
+    }
+    else if(direction=="front"){
+        pages[0].innerHTML = all_text[curpage]
+        pages[1].innerHTML = all_text[curpage+1]
+        pages[2].innerHTML = all_text[curpage+2]
+        pages[3].innerHTML = all_text[curpage+3]
+    }
+    else{
+        pages[0].innerHTML = all_text[curpage-2]
+        pages[1].innerHTML = all_text[curpage-1]
+        pages[2].innerHTML = all_text[curpage]
+        pages[3].innerHTML = all_text[curpage+1]
+    }
+}
 
 var main_all_text = []
 var ann_rest_text = []
@@ -80,8 +105,6 @@ for(var i = 0; i<liTextData.length; i++){
 var all_text = []
 var all_text = splitTextBetweenPages(ann_rest_text)
 all_text.push.apply(all_text, splitTextBetweenPages(main_all_text))
-console.log(all_text.length)
-backP1.innerHTML = all_text[1]
 
 
 nextPageBtn.addEventListener("click", goNextPage)
@@ -90,6 +113,7 @@ prevPageBtn.addEventListener("click", goPrevPage)
 let currentLocation = 1
 let numOfPapers = 3
 let maxLocation = numOfPapers+1
+let curPage = -2
 
 function disableTransition(){
     for(var i = 0; i<allFront.length; i++){
@@ -137,6 +161,7 @@ function goNextPage(){
     if(currentLocation<maxLocation){
         switch(currentLocation){
             case 1:
+                setTextForPages(all_text, writable_p, curPage, "front")
                 paper1.classList.add("flipped")
                 setTimeout(()=>{
                     paper1.style.zIndex = 1
@@ -144,22 +169,34 @@ function goNextPage(){
                 openBook()
                 break
             case 2:
+                if(curPage!=0 & curPage<all_text.length-1){
+                    setTextForPages(all_text, writable_p, curPage, "front")
+                }
                 paper2.classList.add("flipped")
                 setTimeout(()=>{
                     paper2.style.zIndex = 2
                 }, 500)
-                // skipToPrevPage()
+                if(curPage<all_text.length-3){
+                    skipToPrevPage()
+                }
                 break
             case 3:
-                paper3.classList.add("flipped")
-                setTimeout(()=>{
-                    paper3.style.zIndex = 3
-                }, 500)
-                closeBook()
-                document.getElementById("canvas").style.transform = "translateX("+(document.getElementById("header-liner-u").getBoundingClientRect().width/2-5)+"px)"
-                break
+                if(curPage>=all_text.length-1){
+                    paper3.classList.add("flipped")
+                    setTimeout(()=>{
+                        paper3.style.zIndex = 3
+                    }, 500)
+                    closeBook()
+                    document.getElementById("canvas").style.transform = "translateX("+(document.getElementById("header-liner-u").getBoundingClientRect().width/2-5)+"px)"
+                    break
+                }
+                else{
+                    skipToPrevPage()
+                }
         }
         currentLocation++
+        curPage+=2
+        console.log(curPage)
     }
 }
 
@@ -167,24 +204,32 @@ function goPrevPage(){
     if(currentLocation>1){
         switch(currentLocation){
             case 2:
-                paper1.classList.remove("flipped")
-                paper1.style.zIndex = 4
-                closeBook()
-                document.getElementById("canvas").style.transform = "translateX(0px)"
-                break
+                if(curPage==0){
+                    paper1.classList.remove("flipped")
+                    paper2.classList.remove("flipped")
+                    paper1.style.zIndex = 4
+                    paper2.style.zIndex = 3
+                    closeBook()
+                    document.getElementById("canvas").style.transform = "translateX(0px)"
+                    break
+                }
             case 3:
-                paper2.classList.remove("flipped")
+                setTextForPages(all_text, writable_p, curPage, "back")
                 setTimeout(()=>{
+                paper2.classList.remove("flipped")
                 paper2.style.zIndex = 3
-                })
-                // skipToNextPage()
+                }, 100)
+                skipToNextPage()
                 break
             case 4:
+                setTextForPages(all_text, writable_p, curPage, "back")
                 paper3.classList.remove("flipped")
                 paper3.style.zIndex = 2
                 openBook()
                 break
         }
         currentLocation--
+        curPage-=2
+        console.log(curPage)
     }
 }
