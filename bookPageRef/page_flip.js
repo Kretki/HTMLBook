@@ -24,17 +24,78 @@ const liTextData = document.getElementById("text-for-book").getElementsByTagName
 let currentLocation = 1
 let numOfPapers = 4
 let maxLocation = numOfPapers+1
-let curPage = -2
+let curBookPage = 0
+
+var splitted_text = []
+var writable_p = [backP1, frontP2, backP2, frontP3, backP3, frontP4]
+
+function catchText(text){
+    return text
+}
 
 setTimeout(()=>{
-    bookHandle()
+    bookHandle().then((res)=>{
+        splitted_text = res
+    })
 }, 100)
     
+function disableTransition(){
+    for(var i = 0; i<allFront.length; i++){
+        allFront[i].classList.add('notransition')
+        allBack[i].classList.add('notransition')
+    }
+}
+
+function enableTransition(){
+    for(var i = 0; i<allFront.length; i++){
+        allFront[i].classList.remove('notransition')
+        allBack[i].classList.remove('notransition')
+    }
+}
+
+function placeTextOnPages(pages, textList){
+    if(currentLocation == 1 | currentLocation == 2){
+        for(var i = 0; i<pages.length; ++i){
+            pages[i].innerHTML = textList[i]
+        }
+    }
+    if(currentLocation == 4 | currentLocation == 3){
+        for(var i = 0; i<pages.length; ++i){
+            pages[pages.length-i-1].innerHTML = textList[textList.length-i-1]
+        }
+    }
+}
+
+function splitTextBetweenPages(rest_text){
+    var all_text = []
+    while(rest_text.length != 0){
+        var stop = false
+        var textToWrite = ""
+        backP1.innerHTML = ""
+        while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
+            if(rest_text.length == 0){
+                stop = true
+                break
+            }
+            textToWrite = rest_text.shift()
+            backP1.innerHTML = backP1.textContent+" "+textToWrite
+            if(textToWrite == "\f"){
+                stop = true
+                break
+            }
+        }
+        backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
+        all_text.push(backP1.textContent)
+        if(!stop){
+            rest_text.unshift(textToWrite)
+        }
+    }
+    return all_text
+}
 
 async function bookHandle(){
     var main_all_text = []
     var ann_rest_text = []
-    var writable_p = [backP1, frontP2, backP2, frontP3, backP3, frontP4]
     var ifNewTitle = false
     for(var i = 0; i<liTextData.length; i++){
         var spli = liTextData[i].textContent.split("0x1x0")
@@ -60,14 +121,15 @@ async function bookHandle(){
         }
     }
 
-    var all_text = []
+    var splitted_text = []
     console.log("start")
-    var all_text = await splitTextBetweenPages(ann_rest_text)
+    var splitted_text = await splitTextBetweenPages(ann_rest_text)
     const splitted_main = splitTextBetweenPages(main_all_text)
-    all_text.push.apply(all_text, splitted_main)
+    splitted_text.push.apply(splitted_text, splitted_main)
     console.log("end")
     nextPageBtn.addEventListener("click", goNextPage)
     prevPageBtn.addEventListener("click", goPrevPage)
+    return splitted_text
 }
 
 function goNextPage(){
@@ -102,7 +164,8 @@ function goNextPage(){
                 break
         }
         currentLocation++
-        curPage+=2
+        console.log(splitted_text)
+        placeTextOnPages(writable_p, splitted_text)
     }
 }
 
@@ -131,40 +194,10 @@ function goPrevPage(){
                 openBook()
         }
         currentLocation--
-        curPage-=2
+        placeTextOnPages(writable_p, splitted_text)
     }
 }
 
-function splitTextBetweenPages(rest_text){
-    var all_text = []
-    while(rest_text.length != 0){
-        var stop = false
-        var textToWrite = ""
-        backP1.innerHTML = ""
-        while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
-            if(rest_text.length == 0){
-                stop = true
-                break
-            }
-            textToWrite = rest_text.shift()
-            backP1.innerHTML = backP1.textContent+" "+textToWrite
-            if(textToWrite == "\f"){
-                stop = true
-                break
-            }
-        }
-        backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
-        all_text.push(backP1.textContent)
-        if(!stop){
-            rest_text.unshift(textToWrite)
-        }
-        // if(all_text.length>10){
-        //     console.log(all_text)
-        //     break
-        // }
-    }
-    return all_text
-}
 
 // function setTextForPages(all_text, pages, curpage, direction){
 //     if(curpage == -2){
@@ -191,19 +224,7 @@ function splitTextBetweenPages(rest_text){
 //     }
 // }
 
-// function disableTransition(){
-//     for(var i = 0; i<allFront.length; i++){
-//         allFront[i].classList.add('notransition')
-//         allBack[i].classList.add('notransition')
-//     }
-// }
-
-// function enableTransition(){
-//     for(var i = 0; i<allFront.length; i++){
-//         allFront[i].classList.remove('notransition')
-//         allBack[i].classList.remove('notransition')
-//     }
-// }
+// 
 
 // function skipToPrevPage(){
 //     currentLocation--
