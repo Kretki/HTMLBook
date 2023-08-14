@@ -38,33 +38,6 @@ setTimeout(()=>{
         splitted_text = res
     })
 }, 100)
-    
-function disableTransition(){
-    for(var i = 0; i<allFront.length; i++){
-        allFront[i].classList.add('notransition')
-        allBack[i].classList.add('notransition')
-    }
-}
-
-function enableTransition(){
-    for(var i = 0; i<allFront.length; i++){
-        allFront[i].classList.remove('notransition')
-        allBack[i].classList.remove('notransition')
-    }
-}
-
-function placeTextOnPages(pages, textList){
-    if(currentLocation == 1 | currentLocation == 2){
-        for(var i = 0; i<pages.length; ++i){
-            pages[i].innerHTML = textList[i]
-        }
-    }
-    if(currentLocation == 4 | currentLocation == 3){
-        for(var i = 0; i<pages.length; ++i){
-            pages[pages.length-i-1].innerHTML = textList[textList.length-i-1]
-        }
-    }
-}
 
 function splitTextBetweenPages(rest_text){
     var all_text = []
@@ -132,40 +105,114 @@ async function bookHandle(){
     return splitted_text
 }
 
+function disableTransition(){
+    for(var i = 0; i<allFront.length; i++){
+        allFront[i].classList.add('notransition')
+        allBack[i].classList.add('notransition')
+    }
+}
+
+function enableTransition(){
+    for(var i = 0; i<allFront.length; i++){
+        allFront[i].classList.remove('notransition')
+        allBack[i].classList.remove('notransition')
+    }
+}
+
+function skipToPrevPage(pages, textList){
+    currentLocation--
+    setTimeout(()=>{
+        for(var i = 0; i<pages.length-2; ++i){
+            pages[i].innerHTML = textList[curBookPage+i-2]
+        }
+    }, 300)
+    setTimeout(()=>{
+        disableTransition()
+        paper3.classList.remove("flipped")
+        paper3.style.zIndex = 3
+    }, 400)
+    setTimeout(()=>{
+        placeTextOnPages(pages, textList)
+    }, 500)
+    setTimeout(()=>{
+        enableTransition()
+    }, 600)
+}
+
+function skipToNextPage(pages, textList){
+    currentLocation++
+    setTimeout(()=>{
+        for(var i = 0; i<pages.length-2; ++i){
+            pages[i+2].innerHTML = textList[curBookPage+i]
+        }
+    }, 300)
+    setTimeout(()=>{
+        disableTransition()
+        paper3.classList.add("flipped")
+        paper3.style.zIndex = 3
+    }, 400)
+    setTimeout(()=>{
+        placeTextOnPages(pages, textList)
+    }, 500)
+    setTimeout(()=>{
+        enableTransition()
+    }, 600)
+}
+
+function placeTextOnPages(pages, textList){
+    if(currentLocation == 1 | currentLocation == 2){
+        for(var i = 0; i<pages.length; ++i){
+            pages[i].innerHTML = textList[i]
+        }
+    }
+    else if(currentLocation == 5 | currentLocation == 4){
+        for(var i = 0; i<pages.length; ++i){
+            pages[pages.length-i-1].innerHTML = textList[textList.length-i-1]
+        }
+    }
+    else{
+        for(var i = 0; i<pages.length; ++i){
+            pages[i].innerHTML = textList[curBookPage+i-2]
+        }
+    }
+}
+
 function goNextPage(){
     if(currentLocation<maxLocation){
         switch(currentLocation){
             case 1:
+                placeTextOnPages(writable_p, splitted_text)
                 paper1.classList.add("flipped")
                 setTimeout(()=>{
                     paper1.style.zIndex = 1
-                }, 500)
+                }, 200)
                 openBook()
                 break
             case 2:
                 paper2.classList.add("flipped")
                 setTimeout(()=>{
                     paper2.style.zIndex = 2
-                }, 500)
+                }, 200)
+                curBookPage+=2
                 break
             case 3:
                 paper3.classList.add("flipped")
                 setTimeout(()=>{
                     paper3.style.zIndex = 3
-                }, 500)
+                }, 200)
+                curBookPage+=2
+                if(curBookPage < splitted_text.length-2){
+                    skipToPrevPage(writable_p, splitted_text)
+                }
                 break
             case 4:
                 paper4.classList.add("flipped")
-                setTimeout(()=>{
-                    paper4.style.zIndex = 4
-                }, 500)
+                paper4.style.zIndex = 4
                 closeBook()
                 document.getElementById("canvas").style.transform = "translateX("+(document.getElementById("header-liner-u").getBoundingClientRect().width/2-5)+"px)"
                 break
         }
         currentLocation++
-        console.log(splitted_text)
-        placeTextOnPages(writable_p, splitted_text)
     }
 }
 
@@ -179,22 +226,33 @@ function goPrevPage(){
                 document.getElementById("canvas").style.transform = "translateX(0px)"
                 break
             case 3:
-                setTimeout(()=>{
                 paper2.classList.remove("flipped")
-                paper2.style.zIndex = 4
-                }, 100)
+                setTimeout(()=>{
+                    paper2.style.zIndex = 4
+                }, 200)
+                curBookPage-=2
+                if(curBookPage > 2){
+                    console.log(currentLocation)
+                    skipToNextPage(writable_p, splitted_text)
+                }
                 break
             case 4:
                 paper3.classList.remove("flipped")
-                paper3.style.zIndex = 3
+                setTimeout(()=>{
+                    paper3.style.zIndex = 3
+                }, 200)
+                curBookPage-=2
                 break
             case 5:
+                placeTextOnPages(writable_p, splitted_text)
                 paper4.classList.remove("flipped")
-                paper4.style.zIndex = 2
+                setTimeout(()=>{
+                    paper4.style.zIndex = 2
+                }, 200)
                 openBook()
+                break
         }
         currentLocation--
-        placeTextOnPages(writable_p, splitted_text)
     }
 }
 
@@ -224,21 +282,6 @@ function goPrevPage(){
 //     }
 // }
 
-// 
-
-// function skipToPrevPage(){
-//     currentLocation--
-//     setTimeout(()=>{
-//         disableTransition()
-//         backP1.innerHTML = backP2.textContent
-//         frontP2.innerHTML = frontP3.textContent
-//         paper2.classList.remove("flipped")
-//         paper2.style.zIndex = 3
-//     }, 600)
-//     setTimeout(()=>{
-//         enableTransition()
-//     }, 700)
-// }
 
 // function skipToNextPage(){
 //     currentLocation++
