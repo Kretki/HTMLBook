@@ -21,18 +21,59 @@ const allBack = document.getElementsByClassName("back")
 
 const liTextData = document.getElementById("text-for-book").getElementsByTagName("li")
 
-nextPageBtn.addEventListener("click", goNextPage)
-prevPageBtn.addEventListener("click", goPrevPage)
-
 let currentLocation = 1
 let numOfPapers = 4
 let maxLocation = numOfPapers+1
+let curPage = -2
+
+setTimeout(()=>{
+    bookHandle()
+}, 100)
+    
+
+async function bookHandle(){
+    var main_all_text = []
+    var ann_rest_text = []
+    var writable_p = [backP1, frontP2, backP2, frontP3, backP3, frontP4]
+    var ifNewTitle = false
+    for(var i = 0; i<liTextData.length; i++){
+        var spli = liTextData[i].textContent.split("0x1x0")
+        if(spli[0] == "author"){
+            frontH3.innerHTML = spli[1]
+        }
+        if(spli[0] == "book-title"){
+            frontH1.innerHTML = spli[1]
+        }
+        if(spli[0] == "annotation"){
+            ann_rest_text.push.apply(ann_rest_text, spli[1].split(" "))
+        }
+        else{
+            if(spli[0].substring(0,6) == "title" && !ifNewTitle){
+                main_all_text.push("\f")
+                ifNewTitle = true
+            }
+            if(spli[0].substring(0,6) != "title"){
+                ifNewTitle = false
+            }
+            main_all_text.push.apply(main_all_text, spli[1].split(" "))
+            main_all_text.push("\n")
+        }
+    }
+
+    var all_text = []
+    console.log("start")
+    var all_text = await splitTextBetweenPages(ann_rest_text)
+    const splitted_main = splitTextBetweenPages(main_all_text)
+    all_text.push.apply(all_text, splitted_main)
+    console.log("end")
+    nextPageBtn.addEventListener("click", goNextPage)
+    prevPageBtn.addEventListener("click", goPrevPage)
+}
 
 function goNextPage(){
     if(currentLocation<maxLocation){
         switch(currentLocation){
             case 1:
-                // setTextForPages(all_text, writable_p, curPage, "front")
                 paper1.classList.add("flipped")
                 setTimeout(()=>{
                     paper1.style.zIndex = 1
@@ -40,28 +81,16 @@ function goNextPage(){
                 openBook()
                 break
             case 2:
-                // if(curPage!=0 & curPage<all_text.length-1){
-                //     setTextForPages(all_text, writable_p, curPage, "front")
-                // }
                 paper2.classList.add("flipped")
                 setTimeout(()=>{
                     paper2.style.zIndex = 2
                 }, 500)
-                // if(curPage<all_text.length-3){
-                //     skipToPrevPage()
-                // }
                 break
             case 3:
-                // if(curPage>=all_text.length-1){
                 paper3.classList.add("flipped")
                 setTimeout(()=>{
                     paper3.style.zIndex = 3
                 }, 500)
-                //     break
-                // }
-                // else{
-                //     skipToPrevPage()
-                // }
                 break
             case 4:
                 paper4.classList.add("flipped")
@@ -73,6 +102,7 @@ function goNextPage(){
                 break
         }
         currentLocation++
+        curPage+=2
     }
 }
 
@@ -80,25 +110,18 @@ function goPrevPage(){
     if(currentLocation>1){
         switch(currentLocation){
             case 2:
-                // if(curPage==0){
                 paper1.classList.remove("flipped")
-                // paper2.classList.remove("flipped")
                 paper1.style.zIndex = 5
-                // paper2.style.zIndex = 3
                 closeBook()
                 document.getElementById("canvas").style.transform = "translateX(0px)"
                 break
-                // }
             case 3:
-                // setTextForPages(all_text, writable_p, curPage, "back")
                 setTimeout(()=>{
                 paper2.classList.remove("flipped")
                 paper2.style.zIndex = 4
                 }, 100)
-                // skipToNextPage()
                 break
             case 4:
-                // setTextForPages(all_text, writable_p, curPage, "back")
                 paper3.classList.remove("flipped")
                 paper3.style.zIndex = 3
                 break
@@ -108,39 +131,40 @@ function goPrevPage(){
                 openBook()
         }
         currentLocation--
+        curPage-=2
     }
 }
 
-// function splitTextBetweenPages(rest_text){
-//     var all_text = []
-//     while(rest_text.length != 0){
-//         var stop = false
-//         var textToWrite = ""
-//         backP1.innerHTML = ""
-//         while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
-//             if(rest_text.length == 0){
-//                 stop = true
-//                 break
-//             }
-//             textToWrite = rest_text.shift()
-//             backP1.innerHTML = backP1.textContent+" "+textToWrite
-//             if(textToWrite == "\f"){
-//                 stop = true
-//                 break
-//             }
-//         }
-//         backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
-//         all_text.push(backP1.textContent)
-//         if(!stop){
-//             rest_text.unshift(textToWrite)
-//         }
-//         if(all_text.length>10){
-//             console.log(all_text)
-//             break
-//         }
-//     }
-//     return all_text
-// }
+function splitTextBetweenPages(rest_text){
+    var all_text = []
+    while(rest_text.length != 0){
+        var stop = false
+        var textToWrite = ""
+        backP1.innerHTML = ""
+        while(backP1.scrollHeight+20<=paper1.getBoundingClientRect().height){
+            if(rest_text.length == 0){
+                stop = true
+                break
+            }
+            textToWrite = rest_text.shift()
+            backP1.innerHTML = backP1.textContent+" "+textToWrite
+            if(textToWrite == "\f"){
+                stop = true
+                break
+            }
+        }
+        backP1.innerHTML = backP1.textContent.slice(0, -(textToWrite.length+1))
+        all_text.push(backP1.textContent)
+        if(!stop){
+            rest_text.unshift(textToWrite)
+        }
+        // if(all_text.length>10){
+        //     console.log(all_text)
+        //     break
+        // }
+    }
+    return all_text
+}
 
 // function setTextForPages(all_text, pages, curpage, direction){
 //     if(curpage == -2){
@@ -166,47 +190,6 @@ function goPrevPage(){
 //         pages[3].innerHTML = all_text[curpage+1]
 //     }
 // }
-
-// var main_all_text = []
-// var ann_rest_text = []
-// var writable_p = [backP1, frontP2, backP2, frontP3]
-// var ifNewTitle = false
-// for(var i = 0; i<liTextData.length; i++){
-//     var spli = liTextData[i].textContent.split("0x1x0")
-//     if(spli[0] == "author"){
-//         frontH3.innerHTML = spli[1]
-//     }
-//     if(spli[0] == "book-title"){
-//         frontH1.innerHTML = spli[1]
-//     }
-//     if(spli[0] == "annotation"){
-//         ann_rest_text.push.apply(ann_rest_text, spli[1].split(" "))
-//     }
-//     else{
-//         if(spli[0].substring(0,6) == "title" && !ifNewTitle){
-//             main_all_text.push("\f")
-//             ifNewTitle = true
-//         }
-//         if(spli[0].substring(0,6) != "title"){
-//             ifNewTitle = false
-//         }
-//         main_all_text.push.apply(main_all_text, spli[1].split(" "))
-//         main_all_text.push("\n")
-//     }
-// }
-
-// var all_text = []
-// var all_text = splitTextBetweenPages(ann_rest_text)
-// all_text.push.apply(all_text, splitTextBetweenPages(main_all_text))
-
-
-// nextPageBtn.addEventListener("click", goNextPage)
-// prevPageBtn.addEventListener("click", goPrevPage)
-
-// let currentLocation = 1
-// let numOfPapers = 3
-// let maxLocation = numOfPapers+1
-// let curPage = -2
 
 // function disableTransition(){
 //     for(var i = 0; i<allFront.length; i++){
